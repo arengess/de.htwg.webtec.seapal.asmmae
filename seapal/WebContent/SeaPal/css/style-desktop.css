@@ -10,22 +10,12 @@
 
 /* Menu */
 
-#menu-logo a{
-	
-	overflow: hidden;	
-	text-align: left;
-	line-height: 90px;
+#LogoSeaPal {
+	line-height:100px;
 	letter-spacing: -2px;
 	text-decoration: none;
 	font-size: 40pt;
-	color: #969696;
-}
-
-#menu-logo {
-	
-	position:absolute;
-	left: 100px;
-	overflow: hidden;
+	color: #CCCCCC;
 }
 
 #menu {
@@ -39,7 +29,8 @@
 }
 
 #menu li {
-	height: 105px;
+	height: 87px;
+/*	height: 105px;*/
 	display: inline-block;
 }
 
