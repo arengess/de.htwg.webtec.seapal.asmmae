@@ -155,15 +155,15 @@
 	display: block;
 }
 
-/* Copyright */
+/* footer */
 
-#copyright {
+#footer {
 	overflow: hidden;
 	height: 200px;
 	box-shadow: inset 0px 20px 80px 0px rgba(0,0,0,0.3);
 }
 
-#copyright p {
+#footer p {
 	padding: 60px 0px 0px 0px;
 	text-align: center;
 	text-shadow: 1px 1px 0 rgba(0,0,0,.5);
@@ -173,7 +173,7 @@
 	color: #FFFFFF;
 }
 
-#copyright a {
+#footer a {
 	color: #FFFFFF;
 }
 

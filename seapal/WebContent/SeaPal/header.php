@@ -27,15 +27,15 @@
 			</nav>
 		</div>
 	</div>
-	<div id="logo-wrapper">
+<!-- 	<div id="logo-wrapper">
 		<div class="5grid-layout" id="logo" >
 			<div class="row">
 				<div class="12u">
 					<div >
-						<h1><a href="#" class="mobileUI-site-name">SeaPal</a><span class="tagline"> by HTML5Templates.com</span></h1>
+						<h1><a href="#" class="mobileUI-site-name">SeaPal</a><span class="tagline"> The App for sailors and water sport fanatics</span></h1>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </header>
