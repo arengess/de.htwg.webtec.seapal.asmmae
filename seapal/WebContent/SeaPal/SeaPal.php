@@ -47,7 +47,8 @@
 		<div id="wrapper">
 			<div id="header-wrapper">
 				<header id="header">
-					<?php include("header.php")?>
+					<?php include("header.php")
+					?>
 				</header>
 			</div>
 			<div class="5grid-layout">
@@ -313,10 +314,10 @@
 				</div>
 			</div>
 		</div>
-		<?php $hit_count=@file_get_contents('count.txt');
+		<?php $hit_count = @file_get_contents('count.txt');
 			echo $hit_count;
 			$hit_count++;
-			@file_put_contents('count.txt',$hit_count);
+			@file_put_contents('count.txt', $hit_count);
 		?>
 		<div id="footer">
 			<?php
