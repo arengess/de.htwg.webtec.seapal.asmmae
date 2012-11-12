@@ -36,7 +36,7 @@
 		$w = $_POST['Genuagroesse'];
 		$x = $_POST['Spigroesse'];
 
-		$insert = mysql_query("Insert into binfos (Bootsname, Registernr, Segelzeichen, Heimathafen, Yachtclub, Eigner,	Versicherung, Rufzeichen, Typ, Konstrukteur, Laenge, Breite, Tiefgang, Masthoehe, Verdraengung, Rigart,	Baujahr, Motor, Tankgroesse, Wassertankgroesse, Abwassertankgroesse, Grosssegelgroesse, Genuagroesse, Spigroesse) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j', '$k', '$l', '$m', '$n', '$o', '$p', '$q', '$r', '$s', '$t', '$u', '$v', '$w', '$x')");
+		$insert = mysql_query("Insert into binfo (Bootsname, Registernr, Segelzeichen, Heimathafen, Yachtclub, Eigner,	Versicherung, Rufzeichen, Typ, Konstrukteur, Laenge, Breite, Tiefgang, Masthoehe, Verdraengung, Rigart,	Baujahr, Motor, Tankgroesse, Wassertankgroesse, Abwassertankgroesse, Grosssegelgroesse, Genuagroesse, Spigroesse) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j', '$k', '$l', '$m', '$n', '$o', '$p', '$q', '$r', '$s', '$t', '$u', '$v', '$w', '$x')");
 
 		mysql_close($con);
 		}

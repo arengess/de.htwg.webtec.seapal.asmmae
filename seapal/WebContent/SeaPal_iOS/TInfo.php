@@ -23,10 +23,9 @@
 			$i = $_POST['Motor'];
 			$j = $_POST['TankGefuellt'];
 
-			$insert = mysql_query("Insert into tinfos (Boot, TripTitle, von, nach, Skipper, Crew, Start, Ende, Motor, Tank) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j')");
+			$insert = mysql_query("Insert into tinfo (Boot, TripTitle, von, nach, Skipper, Crew, Start, Ende, Motor, Tank) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j')");
 
 			mysql_close($con);
-			unset($_POST['Registernr']);
 		}
 		?>
 	</head>

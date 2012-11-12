@@ -29,17 +29,20 @@
 			$o = $_POST['Vorsegel'];
 			$p = $_POST['Grosssegel'];
 
-			$insert = mysql_query("Insert into einfos (Trip, Name, PosNStd, PosNMin, PosNSek, PosEStd, PosEMin, PosESek, COG, SOG, BTM, DTM, FahrtNach, Manoever, Vorsegel, Grosssegel) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j', '$k', '$l', '$m', '$n', '$p')");
+			$insert = mysql_query("Insert into einfo (Trip, Name, PosNStd, PosNMin, PosNSek, PosEStd, PosEMin, PosESek, COG, SOG, BTM, DTM, FahrtNach, Manoever, Vorsegel, Grosssegel) values ('$a', '$b', '$c', '$d', '$e', '$f', '$g', '$h', '$i', '$j', '$k', '$l', '$m', '$n', '$p')");
 
 			mysql_close($con);
 		}
 		?>
 	</head>
 	<body>
-		<form>
+		<form action="EInfo.php" method="post">
+			<h1>Entry Information</h1>
 			<fieldset>
 				<div id="TInfoLinks">
 					<p>
+						Trip
+						<input type="text" name="Trip" />
 						Name
 						<input type="text" name="name"/>
 					</p>
@@ -64,11 +67,11 @@
 						DTM
 						<input type="text" name="DTM"/>
 					</p>
-<!-- 					<p>
-						Manoever
-						<input type="text" name="Manoever"/>
-					</p> 
--->
+					<!-- 					<p>
+					Manoever
+					<input type="text" name="Manoever"/>
+					</p>
+					-->
 				</div>
 
 				<p>
@@ -127,7 +130,7 @@
 					</select>
 				</p>
 
-				<input class="buttonLinks" type="button" value="Neuer Eintrag"/>
+				<input class="buttonLinks" type="submit" value="Neuer Eintrag"/>
 				<input class="buttonLinks" type="button" value="Loeschen"/>
 				<input class="buttonLinks" type="button" value="Filter"/>
 				<input class="buttonRechts" type="button" value="Erster"/>
