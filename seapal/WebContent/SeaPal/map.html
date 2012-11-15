@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<title>Map</title>
+		<style type="text/css">
+			html {
+				height: 100%
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0
+			}
+			#map_canvas {
+				height: 100%;
+				width: 100%
+			}
+		</style>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false"></script>
+		<script type="text/javascript">
+			var map;
+			var mapOptions;
+			function initialize() {
+				mapTypeIds = ["roadmap", "satellite", "OSM"];
+				mapOptions = {
+					center : new google.maps.LatLng(47.66, 9.16),
+					zoom : 14,
+					mapTypeId : google.maps.MapTypeId.ROADMAP,
+					mapTypeControlOptions : {
+						mapTypeIds : mapTypeIds
+					}
+				};
+				map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+			}
+
+		</script>
+	</head>
+	<body onload="initialize()">
+		<h1>Lat: <span id="lat">47.66</span>, Lan: <span id="lan">9.16</span></h1>
+		<div id="map_canvas"></div>
+	</body>
+</html>
