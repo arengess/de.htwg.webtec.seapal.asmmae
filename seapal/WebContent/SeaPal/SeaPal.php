@@ -81,7 +81,7 @@
 							</div>
 							<div class="3u">
 								<section>
-									<h2>SeaPal on IPad and IPhone</h2>
+									<h2>SeaPal on iPad and iPhone</h2>
 									<p>
 										Mauris posuere eros vel metus laoreet auctor. In sodales tincidunt volutpat. Nunc pulvinar massa id risus porta hendrerit. Nunc nec nibh velit, sit amet consectetur neque dolor.
 									</p>

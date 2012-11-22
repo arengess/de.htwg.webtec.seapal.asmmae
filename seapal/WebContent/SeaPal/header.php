@@ -15,6 +15,9 @@
 						<a href="userguide.php">User Guide</a>
 					</li>
 					<li>
+						<a href="map.php">Map</a>
+					</li>
+					<li>
 						<a href="screenshots.php">Screenshots</a>
 					</li>
 					<li>
