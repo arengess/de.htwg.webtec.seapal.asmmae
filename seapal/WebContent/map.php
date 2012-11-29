@@ -61,8 +61,11 @@
 				<div class="row">
 					<div class="12u">
 
-						<h1>Lat: <span id="lat">47.66</span>, Lan: <span id="long">9.16</span></h1>
-						<div id="map_canvas"></div>
+						<div id="map">
+							<?php
+							include ("./map.html")
+							?>
+						</div>
 
 					</div>
 				</div>
