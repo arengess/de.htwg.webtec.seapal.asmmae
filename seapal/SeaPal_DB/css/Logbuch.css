@@ -1,27 +1,22 @@
+.BInfo {
+	display: inline-block;
+}
+
 #BInfoLinks {
 	position:relative;
-	margin-left: 0%;
-	margin-top: 0%
+	margin-right:10%;
+	
 }
 
 #BInfoMitte {
 	position:relative;
-	margin-left:35%;
-	margin-top: -17%;
+	margin-right:10%;
 }
 
-#BInfoRechts {
-	position:relative;
-	margin-left:70%;
-	margin-top:-15%;
+.BInfo input {
+	display: block;
 }
 
 input {
 	margin-left:10px;
-}
-
-.buttonLinks {
-	position:relative;
-	top:auto;
-	margin-left: 10%;
 }

@@ -2,6 +2,8 @@
 	<head>
 		<title>Bootsinformationen</title>
 		<link rel="stylesheet" type="text/css" href="./css/Logbuch.css"/>
+		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/RegularExpressions.js"></script>
 		<?php
 		include ("./dbscript/BInfo_script.php");
 		?>
@@ -11,113 +13,117 @@
 			<h1>Bootsinformationen</h1>
 			<fieldset>
 				<div id="wrapper">
-					<div id="BInfoLinks">
+					<div id="textfields">
+					<div id= "BInfoLinks" class="BInfo">
 						<p>
 							<label for="Bootsname">Bootsname</label>
-							<input type="text" id="Bootsname"/>
+							<input type="text" id="Bootsname" name="Bootsname"/>
 						</p>
 						<p>
-							Registernr.
-							<input type="text" id="Registernr"/>
+							<label for="Registernr">Registernr.</label>
+							<input type="text" id="Registernr" name="Registernr"/>
 						</p>
 						<p>
-							Segelzeichen
-							<input type="text" id="Segelzeichen"/>
+							<label for="Segelzeichen">Segelzeichen</label>
+							<input type="text" id="Segelzeichen" name="Segelzeichen"/>
 						</p>
 						<p>
-							Heimathafen
-							<input type="text" id="Heimathafen"/>
+							<label for="Heimathafen">Heimathafen</label>
+							<input type="text" id="Heimathafen" name="Heimathafen"/>
 						</p>
 						<p>
-							Yachtclub
-							<input type="text" id="Yachtclub"/>
+							<label for="Yachtclub">Yachtclub</label>
+							<input type="text" id="Yachtclub" name="Yachtclub"/>
 						</p>
 						<p>
-							Eigner
-							<input type="text" id="Eigner"/>
+							<label for="Eigner">Eigner</label>
+							<input type="text" id="Eigner" name="Eigner"/>
 						</p>
 						<p>
-							Versicherung
-							<input type="text" id="Versicherung"/>
+							<label for="Versicherung">Versicherung</label>
+							<input type="text" id="Versicherung" name="Versicherung"/>
 						</p>
 						<p>
-							Rufzeichen
-							<input type="text" id="Rufzeichen"/>
+							<label for="Rufzeichen">Rufzeichen</label>
+							<input type="text" id="Rufzeichen" name="Rufzeichen"/>
 						</p>
 					</div>
-					<div id="BInfoMitte">
+					<div id= "BInfoMitte" class="BInfo">
 						<p>
-							Typ
-							<input type="text" id="Typ"/>
+							<label for="Typ">Typ</label>
+							<input type="text" id="Typ" name="Typ"/>
 						</p>
 						<p>
-							Konstrukteur
-							<input type="text" id="Konstrukteur"/>
+							<label for="Konstrukteur">Konstrukteur</label>
+							<input type="text" id="Konstrukteur" name="Konstrukteur"/>
 						</p>
 						<p>
-							L&auml;nge
-							<input type="text" id="Laenge"/>
+							<label for="Laenge">L&auml;nge</label>
+							<input type="text" id="Laenge" name="Laenge"/>
 						</p>
 						<p>
-							Breite
-							<input type="text" id="Breite"/>
+							<label for="Breite">Breite</label>
+							<input type="text" id="Breite" name="Breite"/>
 						</p>
 						<p>
-							Tiefgang
-							<input type="text" id="Tiefgang"/>
+							<label for="Tiefgang">Tiefgang</label>
+							<input type="text" id="Tiefgang" name="Tiefgang"/>
 						</p>
 						<p>
-							Masth&ouml;he
-							<input type="text" id="Masthoehe"/>
+							<label for="Masthoehe">Masth&ouml;he</label>
+							<input type="text" id="Masthoehe" name="Masthoehe"/>
 						</p>
 						<p>
-							Verdr&auml;ngung
-							<input type="text" id="Verdraengung"/>
+							<label for="Verdraengung">Verdr&auml;ngung</label>
+							<input type="text" id="Verdraengung" name="Verdraengung"/>
 						</p>
 						<p>
-							Rig-Art
-							<input type="text" id="Rig-Art"/>
-						</p>
-					</div>
-					<div id="BInfoRechts">
-						<p>
-							Baujahr
-							<input type="text" id="Baujahr"/>
-						</p>
-						<p>
-							Motor
-							<input type="text" id="Motor"/>
-						</p>
-						<p>
-							Tankgr&ouml;&szlig;e
-							<input type="text" id="Tankgroesse"/>
-						</p>
-						<p>
-							Wassertankgr&ouml;&szlig;e
-							<input type="text" id="Wassertankgroesse"/>
-						</p>
-						<p>
-							Abwassertankgr&ouml;&szlig;e
-							<input type="text" id="Abwassertankgroesse"/>
-						</p>
-						<p>
-							Gro&szlig;segelgr&ouml;&szlig;e
-							<input type="text" id="Grosssegelgroesse"/>
-						</p>
-						<p>
-							Genuagr&ouml;&szlig;e
-							<input type="text" id="Genuagroesse"/>
-						</p>
-						<p>
-							Spigr&ouml;&szlig;e
-							<input type="text" id="Spigroesse"/>
+							<label for="Rig-Art">Rig-Art</label>
+							<input type="text" id="Rig-Art" name="Rig-Art"/>
 						</p>
 					</div>
-					<input class="buttonLinks" type="button" value="Loeschen"/>
-					<input class="buttonLinks" type="submit" value="Speichern"/>
-					<input class="buttonLinks" type="button" value="Neuster"/>
-					<input class="buttonRechts" type="button" value="Vorheriger"/>
-					<input class="buttonRechts" type="button" value="N&auml;chster"/>
+					<div id= "BInfoRechts" class="BInfo">
+						<p>
+							<label for="Baujahr">Baujahr</label>
+							<input type="text" id="Baujahr" name="Baujahr"/>
+						</p>
+						<p>
+							<label for="Motor">Motor</label>
+							<input type="text" id="Motor" name="Motor"/>
+						</p>
+						<p>
+							<label for="Tankgroesse">Tankgr&ouml;&szlig;e</label>
+							<input type="text" id="Tankgroesse" name="Tankgroesse"/>
+						</p>
+						<p>
+							<label for="Wassertankgroesse">Wassertankgr&ouml;&szlig;e</label>
+							<input type="text" id="Wassertankgroesse" name="Wassertankgroesse"/>
+						</p>
+						<p>
+							<label for="Abwassertankgroesse">Abwassertankgr&ouml;&szlig;e</label>
+							<input type="text" id="Abwassertankgroesse" name="Abwassertankgroesse"/>
+						</p>
+						<p>
+							<label for="Grosssegelgroesse">Gro&szlig;segelgr&ouml;&szlig;e</label>
+							<input type="text" id="Grosssegelgroesse" name="Grosssegelgroesse"/>
+						</p>
+						<p>
+							<label for="Genuagroesse">Genuagr&ouml;&szlig;e</label>
+							<input type="text" id="Genuagroesse" name="Genuagroesse"/>
+						</p>
+						<p>
+							<label for="Spigroesse">Spigr&ouml;&szlig;e</label>
+							<input type="text" id="Spigroesse" name="Spigroesse"/>
+						</p>
+						</div>
+					</div>
+					<div >
+						<input class="buttonLinks" type="button" value="Loeschen"/>
+						<input class="buttonLinks" type="submit" value="Speichern"/>
+						<input class="buttonLinks" type="button" value="Neuster"/>
+						<input class="buttonRechts" type="button" value="Vorheriger"/>
+						<input class="buttonRechts" type="button" value="N&auml;chster"/>
+					</div>
 				</div>
 			</fieldset>
 			<div id="tablewrapper">
