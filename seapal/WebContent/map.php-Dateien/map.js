@@ -24,8 +24,27 @@ function initialize() {
 			style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
 		}
 	};
+	
+	var myEvents = {
+		rightclick : function(map, event){
+			current = event;
+			menuArray.open(current);
+		},
+		click : function(){
+			menu.close();
+		},
+		dragstart : function(){
+			menu.close();
+		},
+		zoom_changed : function(){
+			menu.close();
+		}
+	}
 
-	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions, myEvents);
+
+
+
 
 	//OpenStreetMap
 	map.mapTypes.set("OSM", new google.maps.ImageMapType({
@@ -35,18 +54,46 @@ function initialize() {
 		tileSize : new google.maps.Size(256, 256),
 		maxZoom : 18,
 		name : "OpenStreetMap"
-	}))
-
-	var marker = new google.maps.Marker({
-		map : map,
-		icon : 'http://www.daftlogic.com/images/cross-hairs.gif',
-		shape : crosshairShape
-	});
-	marker.bindTo('position', map, 'center');
-
-	//LatLong
-	google.maps.event.addListener(map, 'center_changed', function() {
+	}));
+	
+	//OpenSeaMap
+	map.overlayMapTypes.push(new google.maps.ImageMapType({
+    	getTileUrl: function(coord, zoom) {
+       		return "http://tiles.openseamap.org/seamark/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       	},
+    	tileSize: new google.maps.Size(256, 256),
+    	name: "OpenSeaMap",
+    	maxZoom: 18 
+    }));		google.maps.event.addListener(map, 'center_changed', function() {
 		document.getElementById("lat").firstChild.nodeValue = map.getCenter().lat();
 		document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
 	})
+	
+  	var polyOptions = {
+		strokeColor : '#FF0000',
+		strokeOpacity : 1.0,
+		strokeWeight : 3
+	}
+	var poly = new google.maps.Polyline(polyOptions);
+	poly.setMap(map);
+
+	myRoute = new routeObj();
+	myRoute.map = map;
+	myRoute.route = poly;
+
+	google.maps.event.addListener(map, 'click', function(event) {
+		addLatLng(myRoute, event);
+	});
+
+	formatAndSetPosition(map.getCenter().lat(), map.getCenter().lng());
+
+	// var marker = new google.maps.Marker({
+		// map : map,
+		// icon : 'http://www.daftlogic.com/images/cross-hairs.gif',
+		// shape : crosshairShape
+	// });
+	// marker.bindTo('position', map, 'center');
+
+	//LatLong
+
 }
