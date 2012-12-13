@@ -63,7 +63,7 @@
 
 						<div id="map">
 							<?php
-							include ("./map2.html")
+							include ("./map.php-Dateien/map.html")
 							?>
 						</div>
 

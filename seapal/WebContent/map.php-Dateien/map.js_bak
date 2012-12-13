@@ -26,9 +26,24 @@ function initialize() {
 		}
 	};
 	
+	// var myEvents = {
+		// rightclick : function(map, event){
+			// current = event;
+			// menuArray.open(current);
+		// },
+		// // click : function(){
+			// // menu.close();
+		// // },
+// 
+		// dragstart : function(){
+			// menu.close();
+		// },
+		// zoom_changed : function(){
+			// menu.close();
+		// }
+	// }
 
-
-	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); //, myEvents);
 
 
 
@@ -57,27 +72,41 @@ function initialize() {
 		document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
 	})
 	
-
+  	var polyOptions = {
+		strokeColor : '#FF0000',
+		strokeOpacity : 1.0,
+		strokeWeight : 3
+	}
+	var poly = new google.maps.Polyline(polyOptions);
+	poly.setMap(map);
+
+	myRoute = new routeObj();
+	myRoute.map = map;
+	myRoute.route = poly;
 
 	google.maps.event.addListener(map, 'click', function(event) {
-		setMarker(event.latLng);
+		// addLatLng(myRoute, event);
+		setMarker(event.LatLng);
 
 	
 	});
 
+	formatAndSetPosition(map.getCenter().lat(), map.getCenter().lng());
 
+
+
+	
 
 }
 
 
-function setMarker(hier){ //Marker wird noch nicht gesetzt
+function setMarker(hier){
 	//Marker
-	alert(hier);
+	alert("!");
 	var marker = new google.maps.Marker({
-		position : (47.665, 9.185),
+		position : hier,
 		map : map,
 		shape : crosshairShape
 	});
 	marker.bindTo('position', map, 'center');
-	
 }
