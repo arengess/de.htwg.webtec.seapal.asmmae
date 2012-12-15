@@ -10,9 +10,6 @@ function initialize() {
 		type : 'rect'
 	};
 
-
-	
-	
 	var latlng = new google.maps.LatLng(47.665, 9.185);
 
 	var myOptions = {
@@ -25,13 +22,8 @@ function initialize() {
 			style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
 		}
 	};
-	
 
-
-	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-
-
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 	//OpenStreetMap
 	map.mapTypes.set("OSM", new google.maps.ImageMapType({
@@ -42,42 +34,34 @@ function initialize() {
 		maxZoom : 18,
 		name : "OpenStreetMap"
 	}));
-	
 	//OpenSeaMap
 	map.overlayMapTypes.push(new google.maps.ImageMapType({
-    	getTileUrl: function(coord, zoom) {
-       		return "http://tiles.openseamap.org/seamark/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
-       	},
-    	tileSize: new google.maps.Size(256, 256),
-    	name: "OpenSeaMap",
-    	maxZoom: 18 
-    }));	
-    	//LatLong	google.maps.event.addListener(map, 'center_changed', function() {
+		getTileUrl : function(coord, zoom) {
+			return "http://tiles.openseamap.org/seamark/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+		},
+		tileSize : new google.maps.Size(256, 256),
+		name : "OpenSeaMap",
+		maxZoom : 18
+	}));
+	//LatLong	google.maps.event.addListener(map, 'center_changed', function() {
 		document.getElementById("lat").firstChild.nodeValue = map.getCenter().lat();
 		document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
 	})
 	
-
 
 	google.maps.event.addListener(map, 'click', function(event) {
-		setMarker(event.latLng);
-
-	
+		setMarker(event);
 	});
-
-
 
 }
 
-
-function setMarker(hier){ //Marker wird noch nicht gesetzt
+function setMarker(event) {
 	//Marker
-	alert(hier);
 	var marker = new google.maps.Marker({
-		position : (47.665, 9.185),
-		map : map,
-		shape : crosshairShape
+		position : event.latLng,
+		title : "test"
 	});
-	marker.bindTo('position', map, 'center');
+	marker.setMap(map);
 	
+
 }
