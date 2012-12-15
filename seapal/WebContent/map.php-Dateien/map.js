@@ -1,7 +1,9 @@
 var map;
 var mapOptions;
-var inte = 0;
+var marker;
+var markNr = 0;
 var alleMarken = [];
+var infowindow;
 
 function initialize() {
 
@@ -53,27 +55,34 @@ function initialize() {
 		setMarker(event);
 	});
 
-	var infowindow = new google.maps.InfoWindow({
-		content : "<p>Marker-Info</p>"
-	});
-	google.maps.event.addListener(marker, 'click', function() {
-		alert("!");
-		infowindow.open(map, marker);
-	});
 }
 
 function setMarker(event) {
 	//Marker
-	inte++;
-	var marker = new google.maps.Marker({
+	markNr++;
+	marker = new google.maps.Marker({
 		position : event.latLng,
-		title : inte.toString()
+		title : markNr.toString()
 	});
-	
+
 	marker.setMap(map);
 	alleMarken.push(marker);
-	
-	for(var i = 0; i<alleMarken.length; i++){
-		alert(alleMarken[i].getTitle());
-	}
+
+	//Rightclick Listener
+	google.maps.event.addListener(marker, 'rightclick', function() {
+		var infowindow = new google.maps.InfoWindow({
+			content : "42",
+			size : new google.maps.Size(50, 50)
+		});
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map, marker);
+		});
+	});
+}
+
+function setTempMarker(event) {
+	marker = new google.maps.Marker({
+		position : event.latLng
+	});
+	marker.setMap(map);
 }
