@@ -4,15 +4,16 @@ var marker;
 var markNr = 0;
 var alleMarken = [];
 var infowindow;
+var poly;
 
 function initialize() {
 
 	mapTypeIds = ["roadmap", "satellite", "OSM"];
 
-	var crosshairShape = {
-		coords : [64, 64, 64, 64],
-		type : 'rect'
-	};
+	// <!-- var crosshairShape = {
+	// coords : [64, 64, 64, 64],
+	// type : 'rect'
+	// };-->
 
 	var latlng = new google.maps.LatLng(47.665, 9.185);
 
@@ -20,7 +21,7 @@ function initialize() {
 		zoom : 14,
 		center : latlng,
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
-		draggableCursor : 'crosshair',
+		// <!--draggableCursor : 'crosshair',-->
 		mapTypeControlOptions : {
 			mapTypeIds : mapTypeIds,
 			style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -50,11 +51,39 @@ function initialize() {
 		document.getElementById("lat").firstChild.nodeValue = map.getCenter().lat();
 		document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
 	})
-	//Marker Listener
-	google.maps.event.addListener(map, 'click', function(event) {
-		setMarker(event);
-	});
 
+
+	var polyOptions = {
+		strokeColor : '#000000',
+		strokeOpacity : 1.0,
+		strokeWeight : 3
+	}
+	poly = new google.maps.Polyline(polyOptions);
+	poly.setMap(map);
+
+	//setMarker Listener
+	google.maps.event.addListener(map, 'click', setMarker);
+	// Add a listener for the rightclick event, Polylines
+	google.maps.event.addListener(map, 'rightclick', addLatLng);
+}
+
+/**
+ * Handles click events on a map, and adds a new point to the Polyline.
+ * @param {MouseEvent} mouseEvent
+ */
+function addLatLng(event) {
+	var path = poly.getPath();
+
+	// Because path is an MVCArray, we can simply append a new coordinate
+	// and it will automatically appear
+	path.push(event.latLng);
+
+	// Add a new marker at the new plotted point on the polyline.
+	var marker = new google.maps.Marker({
+		position : event.latLng,
+		title : '#' + path.getLength(),
+		map : map
+	});
 }
 
 function setMarker(event) {
@@ -68,16 +97,6 @@ function setMarker(event) {
 	marker.setMap(map);
 	alleMarken.push(marker);
 
-	//Rightclick Listener
-	google.maps.event.addListener(marker, 'rightclick', function() {
-		var infowindow = new google.maps.InfoWindow({
-			content : "42",
-			size : new google.maps.Size(50, 50)
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map, marker);
-		});
-	});
 }
 
 function setTempMarker(event) {
