@@ -100,7 +100,6 @@ function setMarker(event) {
 
     marker.setMap(map);
     alleMarken.push(marker);
-
 }
 
 function setTempMarker(event) {
