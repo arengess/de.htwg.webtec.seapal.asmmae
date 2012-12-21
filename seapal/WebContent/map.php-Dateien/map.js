@@ -113,12 +113,20 @@ function setTempMarker(event) {
     // neuen setzen
     tempMarker = new google.maps.Marker({
         position : event.latLng,
+        icon : './map.php-Dateien/pfeil_nach_unten.jpg',
         title : "temp"
     });
     tempMarker.setMap(map);
     tempMarken.push(tempMarker);
     
-    //<!-- TimeOut-->
+    //Listener
+    google.maps.event.addListener(tempMarker, 'click', setMarker);
+    
+    //TimeOut
     window.clearTimeout(timeout);
     timeout = window.setTimeout("tempMarker.setMap(null)", 5000);
+}
+
+function getDistance(von, nach){
+    
 }
