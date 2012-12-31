@@ -16,20 +16,44 @@
 				height: 480px;
 				width: 720px;
 			}
+			#ausgabe, #entfernung {
+				float: right;
+			}
+
 		</style>
-<!-- 		<script type="text/javascript" src="./map.php-Dateien/jquery-1.6.1.min.js"></script> -->
+		<script type="text/javascript" src="./map.php-Dateien/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false" ></script>
-<!-- 		<script type="text/javascript" src="./map.php-Dateien/gmap3v5.0b/gmap3.js"></script> -->
-<!-- 		<script type="text/javascript" src="./map.php-Dateien/menu/gmap3-menu.js"></script> -->
-<!-- 		<script type="text/javascript" src="./map.php-Dateien/contextmenu.js"></script> -->
+		<!-- 	<script type="text/javascript" src="./map.php-Dateien/gmap3v5.0b/gmap3.js"></script> -->
+		<!-- 	<script type="text/javascript" src="./map.php-Dateien/menu/gmap3-menu.js"></script> -->
+		<!-- 	<script type="text/javascript" src="./map.php-Dateien/contextmenu.js"></script> -->
 		<script type="text/javascript" src="./map.js"></script>
-<!-- 		<style type="text/css" src="./map.php-Dateien/menu/gmap3-menu.css"></style> -->
-		
+		<script type="text/javascript" src="./map_init.js"></script>
+		<!-- 	<style type="text/css" src="./map.php-Dateien/menu/gmap3-menu.css"></style> -->
 
 	</head>
-	<body onload="initialize()">
+	<body onload=initialize()>
 		<h1>Lat: <span id="lat">47.665</span>, Lan: <span id="long">9.185</span></h1>
+		<div id="ausgabe"></div>
+		<div id="entfernung">
+			Entfernung:
+		</div>
 		<div id="map_canvas"></div>
-		<p id="ausgabe"></p>
+		<div id="contextm">
+			<p>
+				<button id="bMarkeSetzen" style="display: none" class="tempMark">
+					Marke setzen
+				</button>
+
+				<button id="bPolylines" style="display: none">
+					Polylines
+				</button>
+				<button id="bEntfernung" style="display: none">
+					Entfernung
+				</button>
+			</p>
+		</div>
 	</body>
 </html>
+<!--
+todo: Menu vervollständigen (mit Klassen?)
+-->

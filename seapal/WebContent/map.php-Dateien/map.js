@@ -6,16 +6,29 @@ var alleMarken = [];
 var tempMarken = [];
 var infowindow;
 var poly;
+var path;
 var timeout;
+var pos;
 
 function initialize() {
+    //"Menu" buttons:
+    $('#bMarkeSetzen').click(function() {
+        setMarker(pos);
+    });
+    $('#bPolylines').click(function() {
+        addLatLng(pos);
+    });
+    $('#bEntfernung').click(function() {
+        //implementieren
+        alert("$ entfernung");
+    });
 
     mapTypeIds = ["roadmap", "satellite", "OSM"];
 
-    // <!-- var crosshairShape = {
-    // coords : [64, 64, 64, 64],
-    // type : 'rect'
-    // };-->
+    var crosshairShape = {
+        coords : [64, 64, 64, 64],
+        type : 'rect'
+    };
 
     var latlng = new google.maps.LatLng(47.665, 9.185);
 
@@ -23,7 +36,7 @@ function initialize() {
         zoom : 14,
         center : latlng,
         mapTypeId : google.maps.MapTypeId.ROADMAP,
-        // <!--draggableCursor : 'crosshair',-->
+        draggableCursor : 'crosshair',
         mapTypeControlOptions : {
             mapTypeIds : mapTypeIds,
             style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -31,7 +44,7 @@ function initialize() {
     };
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-    //OpenStreetMap
+    //<!--OpenStreetMap-->
     map.mapTypes.set("OSM", new google.maps.ImageMapType({
         getTileUrl : function(coord, zoom) {
             return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
@@ -40,7 +53,7 @@ function initialize() {
         maxZoom : 18,
         name : "OpenStreetMap"
     }));
-    //OpenSeaMap
+    //<!--OpenSeaMap-->
     map.overlayMapTypes.push(new google.maps.ImageMapType({
         getTileUrl : function(coord, zoom) {
             return "http://tiles.openseamap.org/seamark/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
@@ -49,63 +62,68 @@ function initialize() {
         name : "OpenSeaMap",
         maxZoom : 18
     }));
-    //LatLong - Center Listener    google.maps.event.addListener(map, 'center_changed', function() {
+
+    //<!--LatLong - Center Listener-->
+    google.maps.event.addListener(map, 'center_changed', function() {
         document.getElementById("lat").firstChild.nodeValue = map.getCenter().lat();
         document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
     });
 
     var polyOptions = {
-        strokeColor : '#000000',
+        strokeColor : '#FF0000',
         strokeOpacity : 1.0,
         strokeWeight : 3
     };
     poly = new google.maps.Polyline(polyOptions);
     poly.setMap(map);
 
-    //setMarker Listener
+    //<!--set Marker Listener-->
     google.maps.event.addListener(map, 'click', setTempMarker);
-    // Add a listener for the rightclick event, Polylines
-    google.maps.event.addListener(map, 'rightclick', addLatLng);
-    //tempMarker Listener
-    google.maps.event.addListener(tempMarker, 'click', setMarker);
+
 }
 
-/**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {MouseEvent} mouseEvent
- */
 function addLatLng(event) {
-    var path = poly.getPath();
+    tempMarker.setMap(null);
+    $("button").hide(200);
+
+    path = poly.getPath();
 
     // Because path is an MVCArray, we can simply append a new coordinate
     // and it will automatically appear
     path.push(event.latLng);
 
     // Add a new marker at the new plotted point on the polyline.
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + path.getLength(),
         map : map
     });
+
+    $('#entfernung').append(getEntfernung(marker) + '<br>');
 }
 
 function setMarker(event) {
+
+    tempMarker.setMap(null);
+    $("button").hide(200);
     //Marker
-    alert("Marker dauerhaft gesetzt");
     markNr++;
     marker = new google.maps.Marker({
         position : event.latLng,
         title : markNr.toString()
     });
-
     marker.setMap(map);
     alleMarken.push(marker);
+
+    $('#ausgabe').append('Marker ' + markNr + ', LatLng: ' + event.latLng + '<br>');
 }
 
 function setTempMarker(event) {
+
+    pos = event;
     // alte tempMarken löschen
     if (tempMarken) {
-        for(i in tempMarken) {
+        for (i in tempMarken) {
             tempMarken[i].setMap(null);
         }
         tempMarken.length = 0;
@@ -118,15 +136,31 @@ function setTempMarker(event) {
     });
     tempMarker.setMap(map);
     tempMarken.push(tempMarker);
-    
-    //Listener
-    google.maps.event.addListener(tempMarker, 'click', setMarker);
-    
+
+    //KontextMenu anzeigen
+    $("button").show(200);
+
     //TimeOut
     window.clearTimeout(timeout);
-    timeout = window.setTimeout("tempMarker.setMap(null)", 5000);
+    timeout = window.setTimeout(function() {
+        tempMarker.setMap(null);
+        $('button').hide(200);
+    }, 5000);
 }
 
-function getDistance(von, nach){
-    
+function getEntfernung(anfang, ende) {
+
+    if (ende === anfang) {
+        return 0;
+    }
+
+    var entfernung = 0;
+    //korrigieren
+    for ( i = 1; i < path.length; i++) {
+        entfernung = entfernung + google.maps.geometry.spherical.computeDistanceBetween(path[i - 1], path[i]);
+    }
+    $('#ausgabe').append(entfernung + "<br>");
+
+    return entfernung;
 }
+
