@@ -23,12 +23,7 @@
 		</style>
 		<script type="text/javascript" src="./map.php-Dateien/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false" ></script>
-		<!-- 	<script type="text/javascript" src="./map.php-Dateien/gmap3v5.0b/gmap3.js"></script> -->
-		<!-- 	<script type="text/javascript" src="./map.php-Dateien/menu/gmap3-menu.js"></script> -->
-		<!-- 	<script type="text/javascript" src="./map.php-Dateien/contextmenu.js"></script> -->
-		<script type="text/javascript" src="./map.js"></script>
-		<script type="text/javascript" src="./map_init.js"></script>
-		<!-- 	<style type="text/css" src="./map.php-Dateien/menu/gmap3-menu.css"></style> -->
+		<script type="text/javascript" src="./map.php-Dateien/map.js"></script>
 
 	</head>
 	<body onload=initialize()>
@@ -40,7 +35,7 @@
 		<div id="map_canvas"></div>
 		<div id="contextm">
 			<p>
-				<button id="bMarkeSetzen" style="display: none" class="tempMark">
+				<button id="bMarkeSetzen" style="display: none">
 					Marke setzen
 				</button>
 
@@ -49,6 +44,9 @@
 				</button>
 				<button id="bEntfernung" style="display: none">
 					Entfernung
+				</button>
+				<button id ="bLoeschen" style="display: none" class="markerOptions">
+					L&ouml;schen
 				</button>
 			</p>
 		</div>

@@ -9,6 +9,7 @@ var poly;
 var path;
 var timeout;
 var pos;
+var activeMarker;
 
 function initialize() {
     //"Menu" buttons:
@@ -21,6 +22,9 @@ function initialize() {
     $('#bEntfernung').click(function() {
         //implementieren
         alert("$ entfernung");
+    });
+    $('#bLoeschen').click(function() {
+        deleteMarker(activeMarker);
     });
 
     mapTypeIds = ["roadmap", "satellite", "OSM"];
@@ -83,7 +87,7 @@ function initialize() {
 }
 
 function addLatLng(event) {
-    tempMarker.setMap(null);
+    deleteMarker(tempMarker);
     $("button").hide(200);
 
     path = poly.getPath();
@@ -96,6 +100,7 @@ function addLatLng(event) {
     marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + path.getLength(),
+        draggable : true,
         map : map
     });
 
@@ -104,16 +109,31 @@ function addLatLng(event) {
 
 function setMarker(event) {
 
-    tempMarker.setMap(null);
+    deleteMarker(tempMarker);
     $("button").hide(200);
     //Marker
     markNr++;
+
+    //Marker Icon
+    var marker_icon = new google.maps.MarkerImage("./map.php-Dateien/images/flag.gif", new google.maps.Size(128, 128), //originalgröße
+    new google.maps.Point(0, 0), //origin
+    new google.maps.Point(10, 38), //anchor
+    new google.maps.Size(40, 40) //scaled Size
+    );
+
     marker = new google.maps.Marker({
         position : event.latLng,
-        title : markNr.toString()
+        title : markNr.toString(),
+        draggable : true,
+        icon : marker_icon
     });
     marker.setMap(map);
     alleMarken.push(marker);
+
+    google.maps.event.addListener(marker, 'click', function() {
+        showMenu();
+        activeMarker = marker;
+    });
 
     $('#ausgabe').append('Marker ' + markNr + ', LatLng: ' + event.latLng + '<br>');
 }
@@ -128,15 +148,32 @@ function setTempMarker(event) {
         }
         tempMarken.length = 0;
     }
+
+    var tempMarkInfo = new google.maps.InfoWindow({
+        content : "Position: " + event.latLng
+    });
     // neuen setzen
     tempMarker = new google.maps.Marker({
         position : event.latLng,
-        icon : './map.php-Dateien/pfeil_nach_unten.jpg',
+        icon : './map.php-Dateien/images/pfeil_nach_unten.jpg',
         title : "temp"
     });
     tempMarker.setMap(map);
     tempMarken.push(tempMarker);
+    //Menu zeigen
+    showMenu();
+    //Listener
+    google.maps.event.addListener(tempMarker, 'click', function() {
+        tempMarkInfo.open(map, tempMarker);
+    });
 
+}
+
+function deleteMarker(event) {
+    event.setMap(null);
+}
+
+function showMenu() {
     //KontextMenu anzeigen
     $("button").show(200);
 
