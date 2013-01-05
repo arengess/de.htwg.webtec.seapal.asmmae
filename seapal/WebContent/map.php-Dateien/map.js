@@ -6,8 +6,12 @@ var alleMarken = [];
 var tempMarken = [];
 var infowindow;
 var poly;
-var path;
+var path = [];
+var tempPath = [];
+var tempPathMarker = [];
+var tempPolylines = [];
 var timeout;
+var distTimeout;
 var pos;
 var activeMarker;
 
@@ -17,20 +21,38 @@ function initialize() {
         setMarker(pos);
     });
     $('#bPolylines').click(function() {
-        addLatLng(pos);
+        addRoute(pos);
     });
     $('#bEntfernung').click(function() {
-        //implementieren
-        alert("$ entfernung");
+        distancePath(pos);
+        //TimeOut
+        window.clearTimeout(distTimeout);
+        distTimeout = window.setTimeout(function() {
+            if (tempPathMarker) {
+                for (i in tempPathMarker) {
+                    tempPathMarker[i].setMap(null);
+                }
+                tempPathMarker = [];
+                tempPath = [];
+            }
+            if (tempPolylines) {
+                for (i in tempPolylines) {
+                    tempPolylines[i].setMap(null);
+                }
+                tempPolylines = [];
+            }
+            tempPoly = new google.maps.Polyline(tempPolyOptions);
+            tempPoly.setMap(map);
+        }, 5000);
     });
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
-    $('#bStart').click(function(){
-       //implementieren 
-       alert("$ start");
+    $('#bStart').click(function() {
+        //implementieren
+        alert("$ start");
     });
-    $('#bEnde').click(function(){
+    $('#bEnde').click(function() {
         //implementieren
         alert("$ ende");
     });
@@ -88,32 +110,57 @@ function initialize() {
     poly = new google.maps.Polyline(polyOptions);
     poly.setMap(map);
 
+    var tempPolyOptions = {
+        strokeColor : '#000000',
+        strokeOpacity : 1.0,
+        strokeWeight : 3
+    }
+    tempPoly = new google.maps.Polyline(tempPolyOptions);
+    tempPoly.setMap(map);
+
     //<!--set Marker Listener-->
     google.maps.event.addListener(map, 'click', setTempMarker);
-    
-    alert(getFormattedPosition(map.getCenter()));
 
 }
 
-function addLatLng(event) {
+function addRoute(event) {
     deleteMarker(tempMarker);
     $("button").hide(200);
 
     path = poly.getPath();
 
-    // Because path is an MVCArray, we can simply append a new coordinate
-    // and it will automatically appear
     path.push(event.latLng);
 
-    // Add a new marker at the new plotted point on the polyline.
+    //neuer Marker zur Polyline
     marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + path.getLength(),
         draggable : true,
         map : map
     });
+    $('#entfernung').text(getEntfernung(path));
+}
 
-    $('#entfernung').append(getEntfernung(marker) + '<br>');
+function distancePath(event) {
+
+    deleteMarker(tempMarker);
+    $("button").hide(200);
+
+    tempPath = tempPoly.getPath();
+
+    tempPath.push(event.latLng);
+
+    //neuer Marker zur Polyline
+    marker = new google.maps.Marker({
+        position : event.latLng,
+        title : '#' + tempPath.getLength(),
+        draggable : true,
+        map : map
+    });
+    tempPolylines.push(tempPoly);
+    tempPathMarker.push(marker);
+
+    $('#entfernung').text(getEntfernung(tempPath));
 }
 
 function setMarker(event) {
@@ -124,7 +171,7 @@ function setMarker(event) {
     markNr++;
 
     //Marker Icon
-    var marker_icon = new google.maps.MarkerImage("./map.php-Dateien/images/flag.gif", new google.maps.Size(128, 128), //originalgröße
+    var marker_icon = new google.maps.MarkerImage("http://www.lm-design.biz/joomla/images/lm_design/flag.gif", new google.maps.Size(128, 128), //originalgröße
     new google.maps.Point(0, 0), //origin
     new google.maps.Point(10, 38), //anchor
     new google.maps.Size(40, 40) //scaled Size
@@ -144,7 +191,7 @@ function setMarker(event) {
         activeMarker = marker;
     });
 
-    $('#ausgabe').append('Marker ' + markNr + ', LatLng: ' + event.latLng + '<br>');
+    $('#ausgabe').append('<br>Marker ' + markNr + ', LatLng: ' + getFormattedPosition(event.latLng));
 }
 
 function setTempMarker(event) {
@@ -159,7 +206,7 @@ function setTempMarker(event) {
     }
 
     var tempMarkInfo = new google.maps.InfoWindow({
-        content : "Position: " + getFormattedPosition(event.latLng)
+        content : "Position:<br>" + getFormattedPosition(event.latLng)
     });
     // neuen setzen
     tempMarker = new google.maps.Marker({
@@ -198,7 +245,7 @@ function showMenu() {
 function showMarkerMenu() {
     $("button").hide(200);
     $(".markerOptions").show(200);
-    
+
     //TimeOut
     window.clearTimeout(timeout);
     timeout = window.setTimeout(function() {
@@ -207,49 +254,49 @@ function showMarkerMenu() {
     }, 5000);
 }
 
-function getEntfernung(anfang, ende) {
+function getEntfernung(event) {
+    var entfernung = google.maps.geometry.spherical.computeLength(event);
+    return (Math.round(entfernung / 1000 * 10000) / 10000);
 
-    if (ende === anfang) {
-        return 0;
-    }
+    // <!--var entfernung = 0;
+    // for (var i = 1; i < pathDist.length; i++) {
+    // alert(i);
+    // entfernung = entfernung + google.maps.geometry.spherical.computeDistanceBetween(pathDist[(i - 1)].latLng, pathDist[i].latLng);
+    // $('#entfernung').append(entfernung);
+    // }
+    // alert(entfernung);-->
 
-    var entfernung = 0;
-    //korrigieren
-    for ( i = 1; i < path.length; i++) {
-        entfernung = entfernung + google.maps.geometry.spherical.computeDistanceBetween(path[i - 1], path[i]);
-    }
-    $('#ausgabe').append(entfernung + "<br>");
-
-    return entfernung;
+    // <!--var nyc = new google.maps.LatLng(40.715, -74.002);
+    // var london = new google.maps.LatLng(51.506, -0.119);
+    // var distance = google.maps.geometry.spherical.computeDistanceBetween(nyc, london);
+    // alert(distance);-->
 }
 
-function getFormattedPosition(position){
-    
+function getFormattedPosition(position) {
+
     var fLat = position.lat().toString();
     var fLng = position.lng().toString();
-    
+
     var vorzeichenLat = 1;
     var vorzeichenLng = 1;
     //bei negative Koordinaten
-    if (position.lat() < 0){
+    if (position.lat() < 0) {
         vorzeichenLat = -1;
     }
-    if (position.lng() < 0){
+    if (position.lng() < 0) {
         vorzeichenLng = -1;
     }
-   
+
     //Lat
     var latSplit = fLat.split(".");
     var latVK = latSplit[0];
     var latNK = (Math.round(((position.lat() - latVK) * 60 * 100)) / 100) * vorzeichenLat;
-    
-    //Long
+
+    //Lng
     var lngSplit = fLng.split(".");
     var lngVK = lngSplit[0];
     var lngNK = (Math.round(((position.lng() - lngVK) * 60 * 100)) / 100) * vorzeichenLng;
-     
+
     //Ausgabe
-    return "Lat: " + latVK + "°" + latNK + "'N, Lng: " + lngVK + "°" + lngNK + "'E"; 
+    return "Lat: " + latVK + "°" + latNK + "'N, Lng: " + lngVK + "°" + lngNK + "'E";
 }
-
-

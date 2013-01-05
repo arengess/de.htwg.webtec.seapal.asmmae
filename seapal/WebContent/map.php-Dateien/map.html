@@ -16,29 +16,31 @@
 				height: 480px;
 				width: 720px;
 			}
-			#ausgabe, #entfernung {
+			#ausgabe, #dEntfernung {
 				float: right;
 			}
 
 		</style>
 		<script type="text/javascript" src="./map.php-Dateien/jquery-1.6.1.min.js"></script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false" ></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false&libraries=geometry" ></script>
 		<script type="text/javascript" src="./map.php-Dateien/map.js"></script>
 
 	</head>
 	<body onload=initialize()>
 		<h1><span id="coord">Lat: 47°39.9'N, Lng: 9°11.1'E</span></h1>
-		<div id="ausgabe"></div>
-		<div id="entfernung">
-			Entfernung:
+		<div id="dEntfernung">
+			Gesamtstrecke: <span id="entfernung">0</span>km
+		</div><br>
+		<div id="ausgabe">
+			Marker:
 		</div>
+
 		<div id="map_canvas"></div>
 		<div id="contextm">
 			<p>
 				<button id="bMarkeSetzen" style="display: none" class="allgMenu">
 					Marke setzen
 				</button>
-
 				<button id="bPolylines" style="display: none" class="allgMenu">
 					Polylines
 				</button>
@@ -54,7 +56,6 @@
 				<button id ="bLoeschen" style="display: none" class="markerOptions">
 					L&ouml;schen
 				</button>
-
 			</p>
 		</div>
 	</body>
