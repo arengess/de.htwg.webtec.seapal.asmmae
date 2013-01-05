@@ -26,6 +26,14 @@ function initialize() {
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
+    $('#bStart').click(function(){
+       //implementieren 
+       alert("$ start");
+    });
+    $('#bEnde').click(function(){
+        //implementieren
+        alert("$ ende");
+    });
 
     mapTypeIds = ["roadmap", "satellite", "OSM"];
 
@@ -69,8 +77,7 @@ function initialize() {
 
     //<!--LatLong - Center Listener-->
     google.maps.event.addListener(map, 'center_changed', function() {
-        document.getElementById("lat").firstChild.nodeValue = map.getCenter().lat();
-        document.getElementById("long").firstChild.nodeValue = map.getCenter().lng();
+        $("#coord").text(getFormattedPosition(map.getCenter()));
     });
 
     var polyOptions = {
@@ -83,6 +90,8 @@ function initialize() {
 
     //<!--set Marker Listener-->
     google.maps.event.addListener(map, 'click', setTempMarker);
+    
+    alert(getFormattedPosition(map.getCenter()));
 
 }
 
@@ -131,7 +140,7 @@ function setMarker(event) {
     alleMarken.push(marker);
 
     google.maps.event.addListener(marker, 'click', function() {
-        showMenu();
+        showMarkerMenu();
         activeMarker = marker;
     });
 
@@ -150,7 +159,7 @@ function setTempMarker(event) {
     }
 
     var tempMarkInfo = new google.maps.InfoWindow({
-        content : "Position: " + event.latLng
+        content : "Position: " + getFormattedPosition(event.latLng)
     });
     // neuen setzen
     tempMarker = new google.maps.Marker({
@@ -175,13 +184,26 @@ function deleteMarker(event) {
 
 function showMenu() {
     //KontextMenu anzeigen
-    $("button").show(200);
+    $("button").hide(200);
+    $(".allgMenu").show(200);
 
     //TimeOut
     window.clearTimeout(timeout);
     timeout = window.setTimeout(function() {
         tempMarker.setMap(null);
-        $('button').hide(200);
+        $("button").hide(200);
+    }, 5000);
+}
+
+function showMarkerMenu() {
+    $("button").hide(200);
+    $(".markerOptions").show(200);
+    
+    //TimeOut
+    window.clearTimeout(timeout);
+    timeout = window.setTimeout(function() {
+        tempMarker.setMap(null);
+        $("button").hide(200);
     }, 5000);
 }
 
@@ -200,4 +222,34 @@ function getEntfernung(anfang, ende) {
 
     return entfernung;
 }
+
+function getFormattedPosition(position){
+    
+    var fLat = position.lat().toString();
+    var fLng = position.lng().toString();
+    
+    var vorzeichenLat = 1;
+    var vorzeichenLng = 1;
+    //bei negative Koordinaten
+    if (position.lat() < 0){
+        vorzeichenLat = -1;
+    }
+    if (position.lng() < 0){
+        vorzeichenLng = -1;
+    }
+   
+    //Lat
+    var latSplit = fLat.split(".");
+    var latVK = latSplit[0];
+    var latNK = (Math.round(((position.lat() - latVK) * 60 * 100)) / 100) * vorzeichenLat;
+    
+    //Long
+    var lngSplit = fLng.split(".");
+    var lngVK = lngSplit[0];
+    var lngNK = (Math.round(((position.lng() - lngVK) * 60 * 100)) / 100) * vorzeichenLng;
+     
+    //Ausgabe
+    return "Lat: " + latVK + "°" + latNK + "'N, Lng: " + lngVK + "°" + lngNK + "'E"; 
+}
+
 

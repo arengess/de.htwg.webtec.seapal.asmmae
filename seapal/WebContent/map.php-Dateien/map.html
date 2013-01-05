@@ -27,7 +27,7 @@
 
 	</head>
 	<body onload=initialize()>
-		<h1>Lat: <span id="lat">47.665</span>, Lan: <span id="long">9.185</span></h1>
+		<h1><span id="coord">Lat: 47°39.9'N, Lng: 9°11.1'E</span></h1>
 		<div id="ausgabe"></div>
 		<div id="entfernung">
 			Entfernung:
@@ -35,23 +35,28 @@
 		<div id="map_canvas"></div>
 		<div id="contextm">
 			<p>
-				<button id="bMarkeSetzen" style="display: none">
+				<button id="bMarkeSetzen" style="display: none" class="allgMenu">
 					Marke setzen
 				</button>
 
-				<button id="bPolylines" style="display: none">
+				<button id="bPolylines" style="display: none" class="allgMenu">
 					Polylines
 				</button>
-				<button id="bEntfernung" style="display: none">
+				<button id="bEntfernung" style="display: none" class="allgMenu">
 					Entfernung
+				</button>
+				<button id="bStart" style="display: none" class="markerOptions">
+					Route Start
+				</button>
+				<button id="bEnde" style="display: none" class="markerOptions">
+					Route Ende
 				</button>
 				<button id ="bLoeschen" style="display: none" class="markerOptions">
 					L&ouml;schen
 				</button>
+
 			</p>
 		</div>
 	</body>
 </html>
-<!--
-todo: Menu vervollständigen (mit Klassen?)
--->
+
