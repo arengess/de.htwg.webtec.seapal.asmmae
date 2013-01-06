@@ -1,0 +1,26 @@
+.BInfo {
+	display: inline-block;
+}
+
+#BInfoLinks {
+	position:relative;
+	margin-right:10%;
+	
+}
+
+#BInfoMitte {
+	position:relative;
+	margin-right:10%;
+}
+
+.BInfo input {
+	display: block;
+}
+
+input {
+	margin-left:10px;
+}
+
+.hidden{
+	visibility: collapse;
+}
