@@ -20,7 +20,7 @@
 					HashMap<String, BootDTO> bootDTOMap = fassade.getUebersicht();
 					for (String key : fassade.getUebersicht().keySet()){
 						BootDTO bootDTO = bootDTOMap.get(key);
-						out.write("<tr id='"+bootDTO.registernr+"'>" +
+						out.write("<tr class='boot' id='"+bootDTO.registernr+"'>" +
 								"<td>"+ bootDTO.registernr +"</td>"+
 								"<td>"+ bootDTO.bootsname +"</td>"+
 								"<td>"+ bootDTO.eigner+"</td>"+

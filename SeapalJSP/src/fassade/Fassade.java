@@ -2,8 +2,7 @@ package fassade;
 
 import java.sql.*;
 import java.util.HashMap;
-import backend.Boot;
-import backend.DBAccess;
+import backend.*;
 
 public class Fassade {
 	private HashMap<String, Boot> bootMap;
@@ -11,23 +10,39 @@ public class Fassade {
 
 	public Fassade() {
 		try {
-		connection = new DBAccess().getConnection();
-		bootMap = new HashMap<String, backend.Boot>();
-		ResultSet result;
-		result = connection.createStatement().executeQuery("Select * From boatinformation");
-		
-		while(result.next()){
-			bootMap.put(result.getString("registernr"), new Boot(result.getString("registernr"),
-		result.getString("bootsname"), result.getString("segelzeichen"), result.getString("heimathafen"),
-		result.getString("yachtclub"), result.getString("eigner"), result.getString("versicherung"),
-		result.getString("rufzeichen"), result.getString("typ"), result.getString("konstrukteur"),
-		result.getDouble("laenge"), result.getDouble("breite"), result.getDouble("tiefgang"),
-		result.getDouble("masthoehe"), result.getDouble("verdraengung"), result.getString("rigArt"),
-		result.getInt("baujahr"),result.getString("motor"), result.getDouble("tankgroesse"),
-		result.getDouble("wassertankgroesse"), result.getDouble("abwassertankgroesse"),
-		result.getDouble("grosssegelgroesse"), result.getDouble("genuagroesse"),
-		result.getDouble("spiegroesse")));
-		}
+			connection = new DBAccess().getConnection();
+			bootMap = new HashMap<String, backend.Boot>();
+			ResultSet result;
+			result = connection.createStatement().executeQuery(
+					"Select * From boatinformation");
+			while (result.next()) {
+				bootMap.put(
+						result.getString("registernr"),
+						new Boot(result.getString("registernr"), result
+								.getString("bootsname"), result
+								.getString("segelzeichen"), result
+								.getString("heimathafen"), result
+								.getString("yachtclub"), result
+								.getString("eigner"), result
+								.getString("versicherung"), result
+								.getString("rufzeichen"), result
+								.getString("typ"), result
+								.getString("konstrukteur"), result
+								.getDouble("laenge"), result
+								.getDouble("breite"), result
+								.getDouble("tiefgang"), result
+								.getDouble("masthoehe"), result
+								.getDouble("verdraengung"), result
+								.getString("rigArt"), result.getInt("baujahr"),
+								result.getString("motor"), result
+										.getDouble("tankgroesse"), result
+										.getDouble("wassertankgroesse"), result
+										.getDouble("abwassertankgroesse"),
+								result.getDouble("grosssegelgroesse"), result
+										.getDouble("genuagroesse"), result
+										.getDouble("spiegroesse")));
+			}
+			// connection.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,6 +52,7 @@ public class Fassade {
 		}
 	}
 
+	// <-------------Boot------------->
 	public HashMap<String, fassade.BootDTO> getUebersicht() {
 		HashMap<String, fassade.BootDTO> bootDTOMap = new HashMap<String, fassade.BootDTO>();
 		for (String key : bootMap.keySet()) {
@@ -147,4 +163,56 @@ public class Fassade {
 				+ bootDTO.spigroesse + "'");
 		myStatement.close();
 	}
+
+	public void deleteBoot(String key) {
+		bootMap.remove(key);
+		try {
+			// connection = new DBAccess().getConnection();
+			connection.createStatement().executeQuery(
+					"DELETE FROM boatinformation WHERE registernr='" + key
+							+ "'");
+			// connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// <-------------Trip------------->
+	public void addTrip(String key, TripDTO tripDTO) {
+		bootMap.get(key)
+				.getTripMap()
+				.put(tripDTO.title,
+						new Trip(tripDTO.title, tripDTO.von, tripDTO.nach,
+								tripDTO.skipper, tripDTO.crew, tripDTO.start,
+								tripDTO.ende, tripDTO.dauer, tripDTO.motor,
+								tripDTO.tankgefuellt, tripDTO.notes,
+								tripDTO.registernr));
+		try {
+			connection.createStatement().executeQuery(
+					"insert into tripinformation VALUES ('" + tripDTO.title
+							+ "','" + tripDTO.von + "','" + tripDTO.nach
+							+ "','" + tripDTO.skipper + "','" + tripDTO.crew
+							+ "','" + tripDTO.start + "','" + tripDTO.ende
+							+ "','" + tripDTO.dauer + "','" + tripDTO.motor
+							+ "','" + tripDTO.tankgefuellt + "','"
+							+ tripDTO.notes + "','" + tripDTO.registernr
+							+ "')ON DUPLICATE KEY UPDATE title='"
+							+ tripDTO.title + "', von='" + tripDTO.von
+							+ "',nach='" + tripDTO.nach + "',skipper='"
+							+ tripDTO.skipper + "',crew='" + tripDTO.crew
+							+ "',start='" + tripDTO.start + "',ende='"
+							+ tripDTO.ende + "',dauer='" + tripDTO.dauer
+							+ "',motor='" + tripDTO.motor + "',tankgefuellt='"
+							+ tripDTO.tankgefuellt + "',notes='"
+							+ tripDTO.notes + "',registernr='"
+							+ tripDTO.registernr + "'");
+			// connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	// <-------------Entry------------->
 }

@@ -4,7 +4,7 @@ $(document).ready(function() {
 		var equal;
 		if (inputText == "") {
 			$(this).css({
-				"background-color": "yellow"
+				"background-color": "red"
 			  });
 		} else {
 			switch ($(this).attr("id")) {

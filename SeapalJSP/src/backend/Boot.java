@@ -1,12 +1,14 @@
 package backend;
 
+import java.util.HashMap;
+
 public class Boot {
 	public Boot(String registernr, String bootsname, String segelzeichen,
 			String heimathafen, String yachtclub, String eigner,
 			String versicherung, String rufzeichen, String typ,
 			String konstrukteur, double laenge, double breite, double tiefgang,
 			double masthoehe, double verdraengung, String rigArt, int baujahr,
-			String motor, double tankgroesse, double wassertankgoesse,
+			String motor, double tankgroesse, double wassertankgroesse,
 			double abwassertankgroesse, double grosssegelgroesse,
 			double genuagroesse, double spiegroesse) {
 		super();
@@ -29,11 +31,12 @@ public class Boot {
 		this.baujahr = baujahr;
 		this.motor = motor;
 		this.tankgroesse = tankgroesse;
-		this.wassertankgroesse = wassertankgoesse;
+		this.wassertankgroesse = wassertankgroesse;
 		this.abwassertankgroesse = abwassertankgroesse;
 		this.grosssegelgroesse = grosssegelgroesse;
 		this.genuagroesse = genuagroesse;
 		this.spiegroesse = spiegroesse;
+		this.tripMap = new HashMap<String, Trip>();
 	}
 	public String getRegisternr() {
 		return registernr;
@@ -179,6 +182,12 @@ public class Boot {
 	public void setSpiegroesse(double spiegroesse) {
 		this.spiegroesse = spiegroesse;
 	}
+	public HashMap<String, Trip> getTripMap() {
+		return tripMap;
+	}
+	public void setTripMap(HashMap<String, Trip> tripMap) {
+		this.tripMap = tripMap;
+	}
 	private String registernr;
 	private String bootsname;
 	private String segelzeichen;
@@ -203,5 +212,6 @@ public class Boot {
 	private double grosssegelgroesse;
 	private double genuagroesse;
 	private double spiegroesse;
+	private HashMap<String, Trip> tripMap;
 	
 }
