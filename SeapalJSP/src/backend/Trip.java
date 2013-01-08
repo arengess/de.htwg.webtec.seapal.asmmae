@@ -22,6 +22,11 @@ public class Trip {
 		this.registernr = registernr;
 		this.entryMap = new HashMap<String, Entry>();
 	}
+	public Trip(String title2, String von2, String nach2, String skipper2,
+			String crew2, String start2, String ende2, double dauer2,
+			int motor2, boolean tankgefuellt2, String notes2, String registernr2) {
+		// TODO Auto-generated constructor stub
+	}
 	public String getTitle() {
 		return title;
 	}

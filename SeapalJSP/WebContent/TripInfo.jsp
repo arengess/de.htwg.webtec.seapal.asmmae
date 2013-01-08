@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="fassade.*"%>
+
+
+
+
+<!--  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="./css/Logbuch.css" />
 <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
-<title>Insert title here</title>
+<title>Trip Informationen</title>
 </head>
 <body>
 	<form>
@@ -31,24 +37,12 @@
 				</p>
 			</div>
 			<div id="BInfoMitte" class="BInfo">
-				<div id='divnotes'>
-					<label for="notes">Notes:</label>
-					<textarea name="notes" id="notes" cols="40" rows="15"></textarea>
-				</div>
-
-				<div id='divscreen'>
-					<img src="../TestScreenshot.png" alt="Screenshots">
-				</div>
-				<div id='divimage'>
-					<img src="../NoImage.png" alt="Bild">
-				</div>
-
-			</div>
-			<div id="BInfoRechts" class="BInfo">
 				<p>
 					<label for="crew">Crew:</label>
 					<textarea name="crew" cols="30" rows="8" tabindex="5" id="crew"></textarea>
 				</p>
+			</div>
+			<div id="BInfoRechts" class="BInfo">
 				<p>
 					<label for="start">Start:</label> <input type="text" name="start"
 						id="start" tabindex="6" />
@@ -81,7 +75,19 @@
 					class="buttonRechts" type="button" value="N&auml;chster" />
 			</div>
 		</fieldset>
+		<div id='divnotes'>
+			<label for="notes">Notes:</label>
+			<textarea name="notes" id="notes" cols="40" rows="15"></textarea>
+		</div>
+
+		<div id='divscreen'>
+			<img src="../TestScreenshot.png" alt="Screenshots">
+		</div>
+		<div id='divimage'>
+			<img src="../NoImage.png" alt="Bild">
+		</div>
 	</form>
 
 </body>
 </html>
+-->

@@ -12,8 +12,7 @@ public class Fassade {
 		try {
 			connection = new DBAccess().getConnection();
 			bootMap = new HashMap<String, backend.Boot>();
-			ResultSet result;
-			result = connection.createStatement().executeQuery(
+			ResultSet result = connection.createStatement().executeQuery(
 					"Select * From boatinformation");
 			while (result.next()) {
 				bootMap.put(
@@ -53,8 +52,8 @@ public class Fassade {
 	}
 
 	// <-------------Boot------------->
-	public HashMap<String, fassade.BootDTO> getUebersicht() {
-		HashMap<String, fassade.BootDTO> bootDTOMap = new HashMap<String, fassade.BootDTO>();
+	public HashMap<String, BootDTO> getUebersicht() {
+		HashMap<String, BootDTO> bootDTOMap = new HashMap<String, BootDTO>();
 		for (String key : bootMap.keySet()) {
 			BootDTO bootDTO = new BootDTO();
 			bootDTO.bootsname = bootMap.get(key).getBootsname();
@@ -179,15 +178,33 @@ public class Fassade {
 	}
 
 	// <-------------Trip------------->
+	public HashMap<String, TripDTO> getTripList (String key){
+		HashMap<String, TripDTO> tripDTOMap = new HashMap<String, TripDTO>();
+		try {
+			ResultSet result = connection.createStatement().executeQuery("Select * From tripinformation");
+			while(result.next()){
+				tripDTOMap.put(result.getString("title"), new TripDTO(result.getString("title"),
+						result.getString("von"), result.getString("nach"), result.getString("skipper"),
+						result.getString("crew"), result.getString("start"), result.getString("ende"),
+						result.getDouble("dauer"), result.getInt("motor"), result.getBoolean("tankgefuellt"),
+						result.getString("notes"), result.getString("registernr")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tripDTOMap;
+	}
 	public void addTrip(String key, TripDTO tripDTO) {
-		bootMap.get(key)
-				.getTripMap()
-				.put(tripDTO.title,
-						new Trip(tripDTO.title, tripDTO.von, tripDTO.nach,
-								tripDTO.skipper, tripDTO.crew, tripDTO.start,
-								tripDTO.ende, tripDTO.dauer, tripDTO.motor,
-								tripDTO.tankgefuellt, tripDTO.notes,
-								tripDTO.registernr));
+//		bootMap.get(key)
+//				.getTripMap()
+//				.put(tripDTO.title,
+//						new Trip(tripDTO.title, tripDTO.von, tripDTO.nach,
+//								tripDTO.skipper, tripDTO.crew, tripDTO.start,
+//								tripDTO.ende, tripDTO.dauer, tripDTO.motor,
+//								tripDTO.tankgefuellt, tripDTO.notes,
+//								tripDTO.registernr));
 		try {
 			connection.createStatement().executeQuery(
 					"insert into tripinformation VALUES ('" + tripDTO.title

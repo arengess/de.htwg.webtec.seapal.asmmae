@@ -1,6 +1,6 @@
 var aktuellesBoot;
 $(document).ready(function() {
-	loadBootInfo();
+	loadTripInfo();
 	$("#save").click(function() {
 		var fields = $("form").serializeArray();
 		$.ajax({
@@ -13,9 +13,9 @@ $(document).ready(function() {
 		});
 	});
 });
-function loadBootInfo() {
-	$("#Boottabelle").empty();
-	$("#Boottabelle").load("BootInfo.jsp", function(){
+function loadTripInfo() {
+	$("#Triptabelle").empty();
+	$("#Triptabelle").load("TripInfo.jsp", function(){
 		
 		$(".row").mouseover(function(){
 			$(this).css({

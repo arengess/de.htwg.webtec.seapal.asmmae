@@ -22,5 +22,9 @@ input {
 }
 
 .hidden{
-	visibility: collapse;
+	visibility: hidden;
+}
+
+td a{
+	text-decoration:none
 }

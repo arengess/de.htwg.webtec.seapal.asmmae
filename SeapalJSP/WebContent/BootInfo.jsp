@@ -26,6 +26,7 @@
 								"<td>"+ bootDTO.eigner+"</td>"+
 								"<td>"+ bootDTO.typ+"</td>"+
 								"<td>"+ bootDTO.baujahr+"</td>"+
+								"<td><a href='http://localhost:8080/SeapalJSP/TripList.jsp?registernr="+bootDTO.registernr+"'>--></a></td>"+
 								"<td class='hidden'>"+ bootDTO.segelzeichen+"</td>"+
 								"<td class='hidden'>"+ bootDTO.heimathafen+"</td>"+
 								"<td class='hidden'>"+ bootDTO.yachtclub+"</td>"+
