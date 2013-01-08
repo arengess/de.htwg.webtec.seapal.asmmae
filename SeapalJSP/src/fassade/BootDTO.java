@@ -27,40 +27,43 @@ public class BootDTO {
 	public double grosssegelgroesse;
 	public double genuagroesse;
 	public double spigroesse;
-//	public BootDTO(String registernr, String bootsname, String segelzeichen,
-//			String heimathafen, String yachtclub, String eigner,
-//			String versicherung, String rufzeichen, String typ,
-//			String konstrukteur, double laenge, double breite, double tiefgang,
-//			double masthoehe, double verdraengung, String rigArt, int baujahr,
-//			String motor, double tankgroesse, double wassertankgroesse,
-//			double abwassertankgroesse, double grosssegelgroesse,
-//			double genuagroesse, double spigroesse) {
-//		super();
-//		this.registernr = registernr;
-//		this.bootsname = bootsname;
-//		this.segelzeichen = segelzeichen;
-//		this.heimathafen = heimathafen;
-//		this.yachtclub = yachtclub;
-//		this.eigner = eigner;
-//		this.versicherung = versicherung;
-//		this.rufzeichen = rufzeichen;
-//		this.typ = typ;
-//		this.konstrukteur = konstrukteur;
-//		this.laenge = laenge;
-//		this.breite = breite;
-//		this.tiefgang = tiefgang;
-//		this.masthoehe = masthoehe;
-//		this.verdraengung = verdraengung;
-//		this.rigArt = rigArt;
-//		this.baujahr = baujahr;
-//		this.motor = motor;
-//		this.tankgroesse = tankgroesse;
-//		this.wassertankgroesse = wassertankgroesse;
-//		this.abwassertankgroesse = abwassertankgroesse;
-//		this.grosssegelgroesse = grosssegelgroesse;
-//		this.genuagroesse = genuagroesse;
-//		this.spigroesse = spigroesse;
-//	}
+	public BootDTO() {
+		super();
+	}
+	public BootDTO(String registernr, String bootsname, String segelzeichen,
+			String heimathafen, String yachtclub, String eigner,
+			String versicherung, String rufzeichen, String typ,
+			String konstrukteur, double laenge, double breite, double tiefgang,
+			double masthoehe, double verdraengung, String rigArt, int baujahr,
+			String motor, double tankgroesse, double wassertankgroesse,
+			double abwassertankgroesse, double grosssegelgroesse,
+			double genuagroesse, double spigroesse) {
+		super();
+		this.registernr = registernr;
+		this.bootsname = bootsname;
+		this.segelzeichen = segelzeichen;
+		this.heimathafen = heimathafen;
+		this.yachtclub = yachtclub;
+		this.eigner = eigner;
+		this.versicherung = versicherung;
+		this.rufzeichen = rufzeichen;
+		this.typ = typ;
+		this.konstrukteur = konstrukteur;
+		this.laenge = laenge;
+		this.breite = breite;
+		this.tiefgang = tiefgang;
+		this.masthoehe = masthoehe;
+		this.verdraengung = verdraengung;
+		this.rigArt = rigArt;
+		this.baujahr = baujahr;
+		this.motor = motor;
+		this.tankgroesse = tankgroesse;
+		this.wassertankgroesse = wassertankgroesse;
+		this.abwassertankgroesse = abwassertankgroesse;
+		this.grosssegelgroesse = grosssegelgroesse;
+		this.genuagroesse = genuagroesse;
+		this.spigroesse = spigroesse;
+	}
 	public String getRegisternr() {
 		return registernr;
 	}
