@@ -178,10 +178,10 @@ public class Fassade {
 	}
 
 	// <-------------Trip------------->
-	public HashMap<String, TripDTO> getTripList (String key){
+	public HashMap<String, TripDTO> getTripList (String registernr){
 		HashMap<String, TripDTO> tripDTOMap = new HashMap<String, TripDTO>();
 		try {
-			ResultSet result = connection.createStatement().executeQuery("Select * From tripinformation");
+			ResultSet result = connection.createStatement().executeQuery("Select * From tripinformation where registernr='"+registernr+"'");
 			while(result.next()){
 				tripDTOMap.put(result.getString("title"), new TripDTO(result.getString("title"),
 						result.getString("von"), result.getString("nach"), result.getString("skipper"),

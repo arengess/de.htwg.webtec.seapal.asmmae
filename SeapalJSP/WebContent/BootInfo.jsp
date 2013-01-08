@@ -18,7 +18,7 @@
 				<%
 					Fassade fassade = new Fassade();
 					HashMap<String, BootDTO> bootDTOMap = fassade.getUebersicht();
-					for (String key : fassade.getUebersicht().keySet()){
+					for (String key : bootDTOMap.keySet()){
 						BootDTO bootDTO = bootDTOMap.get(key);
 						out.write("<tr class='row' id='"+bootDTO.registernr+"'>" +
 								"<td>"+ bootDTO.registernr +"</td>"+
@@ -26,7 +26,8 @@
 								"<td>"+ bootDTO.eigner+"</td>"+
 								"<td>"+ bootDTO.typ+"</td>"+
 								"<td>"+ bootDTO.baujahr+"</td>"+
-								"<td><a href='http://localhost:8080/SeapalJSP/TripList.jsp?registernr="+bootDTO.registernr+"'>--></a></td>"+
+								"<td><a href='http://localhost:8080/SeapalJSP/TripList.jsp?registernr="+
+								bootDTO.registernr+"'><input type='button' value='-->'/></a></td>"+
 								"<td class='hidden'>"+ bootDTO.segelzeichen+"</td>"+
 								"<td class='hidden'>"+ bootDTO.heimathafen+"</td>"+
 								"<td class='hidden'>"+ bootDTO.yachtclub+"</td>"+

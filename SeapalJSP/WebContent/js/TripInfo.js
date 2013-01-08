@@ -1,4 +1,3 @@
-var aktuellesBoot;
 $(document).ready(function() {
 	loadTripInfo();
 	$("#save").click(function() {

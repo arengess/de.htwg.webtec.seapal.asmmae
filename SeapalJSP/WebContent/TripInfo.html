@@ -3,63 +3,88 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/TripStyle.css" />
+<link rel="stylesheet" type="text/css" href="./css/Logbuch.css" />
+<!-- <link rel="stylesheet" type="text/css" href="./css/TripStyle.css" /> -->
 <title>Trip Informationen</title>
 </head>
 <body>
-	<fieldset>
-		<legend align="center">Logbuch</legend>
-		<table cellspacing="10" cellpadding="10">
-			<tr>
-				<td style='display: none'><input type="text" name="registernr"
-					id="registernr" /></td>
-				<td><label for="triptitle">Trip Title:</label></td>
-				<td><input type="text" name="triptitle" id="triptitle"
-					tabindex="1" /></td>
+	<h1>Trip Informationen</h1>
+	<div class="infoZeile">
+		<fieldset>
+			<div id="BInfoLinks" class="BInfo">
+				<p>
+					<label for="triptitle">Trip Titel:</label> <input type="text"
+						name="triptitle" id="triptitle" tabindex="1" />
+				</p>
+				<p>
+					<label for="von">Von:</label> <input type="text" name="von"
+						id="von" tabindex="2" />
+				</p>
+				<p>
+					<label for="nach">Nach:</label> <input type="text" name="nach"
+						id="nach" tabindex="3" />
+				</p>
+				<p>
+					<label for="skipper">Skipper:</label> <input type="text"
+						name="skipper" id="skipper" tabindex="4" />
+				</p>
+			</div>
+			<div id="BInfoMitte" class="BInfo">
+				<p>
+					<label for="crew">Crew:</label>
+					<textarea name="crew" cols="30" rows="8" tabindex="5" id="crew"></textarea>
+				</p>
+				<p>
+					<label for="tankgefuellt">Tank gef&uuml;llt?</label> <input
+						type="checkbox" name="tankgefuellt" id="tankgefuellt"
+						tabindex="10" />
+				</p>
+			</div>
+			<div id="BInfoRechts" class="BInfo">
+				<p>
+					<label for="start">Start:</label> <input type="text" name="start"
+						id="start" tabindex="6" />
+				</p>
+				<p>
+					<label for="ende">Ende:</label> <input type="text" name="ende"
+						id="ende" tabindex="7" />
+				</p>
+				<p>
+					<label for="dauer">Dauer:</label> <input type="text" name="dauer"
+						id="dauer" tabindex="8" />
+				</p>
+				<p>
+					<label for="motor">Motor(min):</label> <input type="text"
+						name="motor" id="motor" tabindex="9" />
+				</p>
+			</div>
+		</fieldset>
+	</div>
+	<div class="infoZeile">
+		<div id='divnotes' class="BInfo">
+			<textarea name="notes" id="notes" cols="40" rows="21"
+				placeholder="Notizen"></textarea>
+		</div>
 
-			</tr>
-			<tr>
-				<td><label for="von">Von:</label></td>
-				<td><input type="text" name="von" id="von" tabindex="2" /></td>
-				<td rowspan="3"><label for="crew">Crew:</label></td>
-				<td rowspan="3"><textarea name="crew" cols="30" rows="8"
-						tabindex="5" id="crew"></textarea></td>
-				<td><label for="start">Start:</label></td>
-				<td><input type="text" name="start" id="start" tabindex="6" /></td>
-			</tr>
-			<tr>
-				<td><label for="nach">Nach:</label></td>
-				<td><input type="text" name="nach" id="nach" tabindex="3" /></td>
-				<td><label for="ende">Ende:</label></td>
-				<td><input type="text" name="ende" id="ende" tabindex="7" /></td>
-				<td><label for="motor">Motor(min):</label></td>
-				<td><input type="text" name="motor" id="motor" tabindex="9" /></td>
-			</tr>
-			<tr>
-				<td><label for="skipper">Skipper:</label></td>
-				<td><input type="text" name="skipper" id="skipper" tabindex="4" /></td>
-				<td><label for="dauer">Dauer:</label></td>
-				<td><input type="text" name="dauer" id="dauer" tabindex="8" /></td>
-				<td><label for="tankgefuellt">Tank gefuellt?</label></td>
-				<td><input type="checkbox" name="tankgefuellt"
-					id="tankgefuellt" tabindex="10" /></td>
-			</tr>
-		</table>
-	</fieldset>
-	<div id='divnotes'>
-		<label for="notes">Notes:</label>
-		<textarea name="notes" id="notes" cols="40" rows="15"></textarea>
+		<div id='divscreen' class="BInfo">
+			<img src="img/TestScreenshot.PNG" alt="Screenshots">
+		</div>
+		<div id='divimage' class="BInfo">
+			<img src="img/NoImage.PNG" alt="Bild">
+		</div>
 	</div>
-
-	<div id='divscreen'>
-		<img src="img/TestScreenshot.PNG" alt="Screenshots">
+	<div class="infoZeile">
+		<div id="Triptabelle"></div>
 	</div>
-	<div id='divimage'>
-		<img src="img/NoImage.PNG" alt="Bild">
+		<div class="infoZeile">
+		<input class="buttonLinks" type="button" value="Neuer Eintrag" /> <input
+					class="buttonLinks" type="button" value="Loeschen" /> <input
+					class="buttonLinks" type="button" value="Filter" /> <input
+					class="buttonRechts" type="button" value="Erster" /> <input
+					class="buttonRechts" type="button" value="Letzter" /> <input
+					class="buttonRechts" type="button" value="Vorheriger" /> <input
+					class="buttonRechts" type="button" value="N&auml;chster" />
 	</div>
-	<fieldset>
-		<div id= "Triptabelle"></div>
-	</fieldset>
 
 </body>
 </html>

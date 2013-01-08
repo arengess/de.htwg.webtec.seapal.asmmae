@@ -28,3 +28,7 @@ input {
 td a{
 	text-decoration:none
 }
+.infoZeile{
+	display: block;
+}
+
