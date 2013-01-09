@@ -169,7 +169,7 @@ public class Fassade {
 										.getString("ende"), result
 										.getDouble("dauer"), result
 										.getInt("motor"), result
-										.getBoolean("tankgefuellt"), result
+										.getInt("tankgefuellt"), result
 										.getString("notes"), result
 										.getString("registernr")));
 			}
@@ -180,10 +180,28 @@ public class Fassade {
 		}
 		return tripDTOMap;
 	}
-
-	public void addTrip(TripDTO tripDTO) {
+	public TripDTO getTrip(String title) {
+		TripDTO tripDTO = null;
 		try {
-			connection.createStatement().executeQuery(
+			ResultSet result = connection.createStatement().executeQuery(
+					"Select * From tripinformation where title='" + title
+							+ "'");
+			tripDTO = new TripDTO(result.getString("title"),
+					result.getString("von"), result.getString("nach"), result.getString("skipper"),
+					result.getString("crew"), result.getString("start"), result.getString("ende"),
+					result.getDouble("dauer"), result.getInt("motor"), result.getInt("tankgefuellt"),
+					result.getString("notes"), result.getString("registernr"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tripDTO;
+	}
+
+	public void saveTrip(TripDTO tripDTO) {
+		try {
+			Statement myStatement = connection.createStatement();
+			myStatement.execute(
 					"insert into tripinformation VALUES ('" + tripDTO.title
 							+ "','" + tripDTO.von + "','" + tripDTO.nach
 							+ "','" + tripDTO.skipper + "','" + tripDTO.crew
@@ -201,11 +219,23 @@ public class Fassade {
 							+ tripDTO.tankgefuellt + "',notes='"
 							+ tripDTO.notes + "',registernr='"
 							+ tripDTO.registernr + "'");
+			myStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteTrip(String title) {
+		try {
+			Statement myStatement = connection.createStatement();
+			myStatement.execute("DELETE FROM seapal.tripinformation WHERE title='"+title+"'");
+			myStatement.close();
 			// connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	// <-------------Entry------------->
 }

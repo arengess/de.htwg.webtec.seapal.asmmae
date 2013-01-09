@@ -12,13 +12,17 @@ public class TripDTO {
 	public String ende;
 	public double dauer;
 	public int motor;
-	public boolean tankgefuellt;
+	public int tankgefuellt;
 	public String notes;
 	public String registernr;
 		
+	public TripDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public TripDTO(String title, String von, String nach, String skipper,
 			String crew, String start, String ende, double dauer, int motor,
-			boolean tankgefuellt, String notes, String registernr) {
+			int tankgefuellt, String notes, String registernr) {
 		super();
 		this.title = title;
 		this.von = von;
@@ -87,10 +91,10 @@ public class TripDTO {
 	public void setMotor(int motor) {
 		this.motor = motor;
 	}
-	public boolean isTankgefuellt() {
+	public int isTankgefuellt() {
 		return tankgefuellt;
 	}
-	public void setTankgefuellt(boolean tankgefuellt) {
+	public void setTankgefuellt(int tankgefuellt) {
 		this.tankgefuellt = tankgefuellt;
 	}
 	public String getNotes() {

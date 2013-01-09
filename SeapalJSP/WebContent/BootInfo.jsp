@@ -36,7 +36,7 @@
 								+ "<td class='Baujahr'>"
 								+ bootDTO.baujahr
 								+ "</td>"
-								+ "<td><a href='http://localhost:8080/SeapalJSP/TripList.jsp?registernr="
+								+ "<td><a href='http://localhost:8080/SeapalJSP/TripList.html?registernr="
 								+ bootDTO.registernr
 								+ "'><input type='button' value='-->'/></a></td>"
 								+ "<td  class='Segelzeichen' visibility: hidden>" + bootDTO.segelzeichen + "</td>"
