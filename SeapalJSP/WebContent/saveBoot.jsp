@@ -4,6 +4,7 @@
 <%@page import="fassade.Fassade"%>
 <%
 	BootDTO bootDTO = new BootDTO();
+
 	bootDTO.bootsname = request.getParameter("Bootsname");
 	bootDTO.registernr = request.getParameter("Registernr");
 	bootDTO.segelzeichen = request.getParameter("Segelzeichen");
@@ -62,7 +63,7 @@
 	}
 	if (!request.getParameter("Spigroesse").isEmpty()) {
 		bootDTO.spigroesse = Double.parseDouble(request
-		.getParameter("Spiegroesse"));
+		.getParameter("Spigroesse"));
 	}
 	Fassade fassade = new Fassade();
 	fassade.saveBoot(bootDTO);

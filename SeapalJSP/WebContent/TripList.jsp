@@ -43,7 +43,6 @@
 								+ "<td><a href='http://localhost:8080/SeapalJSP/TripInfo.jsp?title="
 								+ tripDTO.title
 								+ "'><input type='button' value='-->'/></a></td></tr>");
-
 					}
 				%>
 			</tbody>
@@ -51,7 +50,7 @@
 		<div>
 			<a href="http://localhost:8080/SeapalJSP/TripInfo.jsp?title=''">
 				<input class='buttonLinks' type='button' value='Neuer Trip' />
-			</a> <input class="buttonLinks" type="button" value="Loeschen" /> <input
+			</a><input class="buttonLinks" type="button" value="Loeschen" /> <input
 				class="buttonRechts" type="button" value="Erster" /> <input
 				class="buttonRechts" type="button" value="Letzter" /> <input
 				class="buttonRechts" type="button" value="Vorheriger" /> <input

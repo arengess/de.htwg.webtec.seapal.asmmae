@@ -15,7 +15,7 @@
 	<div class="infoZeile">
 		<fieldset>
 			<%String title =request.getParameter("title");
-		if(title = ""){%>
+		if(title == ""){%>
 			<div id="BInfoLinks" class="BInfo">
 				<p>
 					<label for="triptitle">Trip Titel:</label> <input type="text"
