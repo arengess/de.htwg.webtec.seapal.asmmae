@@ -139,10 +139,11 @@ public class Fassade {
 
 	public void deleteBoot(String key) {
 		try {
-			// connection = new DBAccess().getConnection();
-			connection.createStatement().executeQuery(
+			Statement myStatement = connection.createStatement();
+			myStatement.execute(
 					"DELETE FROM boatinformation WHERE registernr='" + key
 							+ "'");
+			myStatement.close();
 			// connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

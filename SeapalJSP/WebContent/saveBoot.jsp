@@ -4,7 +4,6 @@
 <%@page import="fassade.Fassade"%>
 <%
 	BootDTO bootDTO = new BootDTO();
-
 	bootDTO.bootsname = request.getParameter("Bootsname");
 	bootDTO.registernr = request.getParameter("Registernr");
 	bootDTO.segelzeichen = request.getParameter("Segelzeichen");

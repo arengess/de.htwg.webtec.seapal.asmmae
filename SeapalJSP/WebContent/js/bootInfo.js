@@ -12,8 +12,24 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$("#delete").click(function() {
+		var key = $("#Registernr").val();
+		$.ajax({
+			type : "POST",
+			url : "deleteBoot.jsp?key="+key,
+			success: function(){
+				loadBootInfo();
+			}
+		});
+	});
 });
 function loadBootInfo() {
+	$("form").find("input[type=text]").each(function ( index ){
+		$(this).val("");
+		$(this).css({
+			"background-color": "white"
+		  });
+	});
 	$("#Boottabelle").empty();
 	$("#Boottabelle").load("BootInfo.jsp" , function(){
 		
