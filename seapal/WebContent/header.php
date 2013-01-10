@@ -9,7 +9,7 @@
 						<span>SeaPal</span>
 					</li>
 					<li class="active">
-						<a href="SeaPal.php">Homepage</a>
+						<a href="index.php">Homepage</a>
 					</li>
 					<li>
 						<a href="userguide.php">User Guide</a>

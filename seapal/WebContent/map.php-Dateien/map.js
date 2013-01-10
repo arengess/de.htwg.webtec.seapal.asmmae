@@ -48,14 +48,7 @@ function initialize() {
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
-    $('#bStart').click(function() {
-        //implementieren
-        alert("$ start");
-    });
-    $('#bEnde').click(function() {
-        //implementieren
-        alert("$ ende");
-    });
+    
 
     mapTypeIds = ["roadmap", "satellite", "OSM"];
 
@@ -160,7 +153,7 @@ function distancePath(event) {
     tempPolylines.push(tempPoly);
     tempPathMarker.push(marker);
 
-    $('#entfernung').text(getEntfernung(tempPath));
+    $('#distEntfernung').text(getEntfernung(tempPath));
 }
 
 function setMarker(event) {
@@ -190,8 +183,11 @@ function setMarker(event) {
         showMarkerMenu();
         activeMarker = marker;
     });
-
-    $('#ausgabe').append('<br>Marker ' + markNr + ', LatLng: ' + getFormattedPosition(event.latLng));
+    
+    //draggable - Position aktualisieren
+    google.maps.event.addListener(marker, 'dragend', function(event){
+        alert(getFormattedPosition(event.latLng));
+    });
 }
 
 function setTempMarker(event) {
@@ -257,19 +253,6 @@ function showMarkerMenu() {
 function getEntfernung(event) {
     var entfernung = google.maps.geometry.spherical.computeLength(event);
     return (Math.round(entfernung / 1000 * 10000) / 10000);
-
-    // <!--var entfernung = 0;
-    // for (var i = 1; i < pathDist.length; i++) {
-    // alert(i);
-    // entfernung = entfernung + google.maps.geometry.spherical.computeDistanceBetween(pathDist[(i - 1)].latLng, pathDist[i].latLng);
-    // $('#entfernung').append(entfernung);
-    // }
-    // alert(entfernung);-->
-
-    // <!--var nyc = new google.maps.LatLng(40.715, -74.002);
-    // var london = new google.maps.LatLng(51.506, -0.119);
-    // var distance = google.maps.geometry.spherical.computeDistanceBetween(nyc, london);
-    // alert(distance);-->
 }
 
 function getFormattedPosition(position) {
@@ -297,6 +280,5 @@ function getFormattedPosition(position) {
     var lngVK = lngSplit[0];
     var lngNK = (Math.round(((position.lng() - lngVK) * 60 * 100)) / 100) * vorzeichenLng;
 
-    //Ausgabe
     return "Lat: " + latVK + "°" + latNK + "'N, Lng: " + lngVK + "°" + lngNK + "'E";
 }

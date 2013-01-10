@@ -13,50 +13,58 @@
 				padding: 0;
 			}
 			#map_canvas {
+
 				height: 480px;
 				width: 720px;
 			}
-			#ausgabe, #dEntfernung {
-				float: right;
+			#mapWrap {
+				top: 50%;
+				left: 100%;
+				margin-top: -140px;
+				margin-left: 240px;
+			}
+
+			#dEntfernung {
+				position: absolute;
+				left: 10px;
 			}
 
 		</style>
-		<script type="text/javascript" src="./map.php-Dateien/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="./map.php-Dateien/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false&libraries=geometry" ></script>
 		<script type="text/javascript" src="./map.php-Dateien/map.js"></script>
 
 	</head>
 	<body onload=initialize()>
-		<h1><span id="coord">Lat: 47°39.9'N, Lng: 9°11.1'E</span></h1>
-		<div id="dEntfernung">
-			Gesamtstrecke: <span id="entfernung">0</span>km
-		</div><br>
-		<div id="ausgabe">
-			Marker:
-		</div>
 
-		<div id="map_canvas"></div>
-		<div id="contextm">
-			<p>
-				<button id="bMarkeSetzen" style="display: none" class="allgMenu">
-					Marke setzen
-				</button>
-				<button id="bPolylines" style="display: none" class="allgMenu">
-					Polylines
-				</button>
-				<button id="bEntfernung" style="display: none" class="allgMenu">
-					Entfernung
-				</button>
-				<button id="bStart" style="display: none" class="markerOptions">
-					Route Start
-				</button>
-				<button id="bEnde" style="display: none" class="markerOptions">
-					Route Ende
-				</button>
-				<button id ="bLoeschen" style="display: none" class="markerOptions">
-					L&ouml;schen
-				</button>
-			</p>
+		<p>
+			<div id="dEntfernung">
+				Gesamtstrecke: <span id="entfernung">0</span> km
+				<br>
+				mit Distance Tool gemessen: <span id="distEntfernung">0</span> km
+			</div>
+			
+		</p>
+		<div id="mapWrap">
+			<h1><span id="coord">Lat: 47°39.9'N, Lng: 9°11.1'E</span></h1>
+			<div id="map_canvas"></div>
+
+			<div id="contextm">
+				<p>
+					<button id="bMarkeSetzen" style="display: none" class="allgMenu">
+						Marke setzen
+					</button>
+					<button id="bPolylines" style="display: none" class="allgMenu">
+						Polylines
+					</button>
+					<button id="bEntfernung" style="display: none" class="allgMenu">
+						Entfernung
+					</button>
+					<button id ="bLoeschen" style="display: none" class="markerOptions">
+						L&ouml;schen
+					</button>
+				</p>
+			</div>
 		</div>
 	</body>
 </html>
