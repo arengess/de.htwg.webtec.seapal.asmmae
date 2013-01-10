@@ -24,6 +24,10 @@ public class EntryDTO {
 	public String triptitle;
 	
 	
+	public EntryDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public EntryDTO(String name, int ngrad, int nmin, int nsec, int egrad,
 			int emin, int esec, double cog, double sog, int btm, double dtm,
 			String fahrtNach, String manoever, String vorsegel,

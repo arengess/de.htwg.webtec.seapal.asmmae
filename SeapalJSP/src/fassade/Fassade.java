@@ -1,6 +1,7 @@
 package fassade;
 
 import java.sql.*;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import backend.*;
 
@@ -66,6 +67,7 @@ public class Fassade {
 			ResultSet result = connection.createStatement().executeQuery(
 					"Select * From boatinformation where registernr='" + key
 							+ "'");
+			result.next();
 			bootDTO = new BootDTO(result.getString("registernr"),
 					result.getString("bootsname"),
 					result.getString("segelzeichen"),
@@ -140,9 +142,9 @@ public class Fassade {
 	public void deleteBoot(String key) {
 		try {
 			Statement myStatement = connection.createStatement();
-			myStatement.execute(
-					"DELETE FROM boatinformation WHERE registernr='" + key
-							+ "'");
+			myStatement
+					.execute("DELETE FROM boatinformation WHERE registernr='"
+							+ key + "'");
 			myStatement.close();
 			// connection.close();
 		} catch (SQLException e) {
@@ -180,16 +182,19 @@ public class Fassade {
 		}
 		return tripDTOMap;
 	}
+
 	public TripDTO getTrip(String title) {
 		TripDTO tripDTO = null;
 		try {
-			ResultSet result = connection.createStatement().executeQuery(
-					"Select * From tripinformation where title='" + title
-							+ "'");
-			tripDTO = new TripDTO(result.getString("title"),
-					result.getString("von"), result.getString("nach"), result.getString("skipper"),
-					result.getString("crew"), result.getString("start"), result.getString("ende"),
-					result.getDouble("dauer"), result.getInt("motor"), result.getInt("tankgefuellt"),
+			ResultSet result = connection.createStatement()
+					.executeQuery(
+							"Select * From tripinformation WHERE title='"+ title + "'");
+			result.next();
+			tripDTO = new TripDTO(title, result.getString("von"),
+					result.getString("nach"), result.getString("skipper"),
+					result.getString("crew"), result.getString("start"),
+					result.getString("ende"), result.getDouble("dauer"),
+					result.getInt("motor"), result.getInt("tankgefuellt"),
 					result.getString("notes"), result.getString("registernr"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -201,34 +206,34 @@ public class Fassade {
 	public void saveTrip(TripDTO tripDTO) {
 		try {
 			Statement myStatement = connection.createStatement();
-			myStatement.execute(
-					"insert into tripinformation VALUES ('" + tripDTO.title
-							+ "','" + tripDTO.von + "','" + tripDTO.nach
-							+ "','" + tripDTO.skipper + "','" + tripDTO.crew
-							+ "','" + tripDTO.start + "','" + tripDTO.ende
-							+ "','" + tripDTO.dauer + "','" + tripDTO.motor
-							+ "','" + tripDTO.tankgefuellt + "','"
-							+ tripDTO.notes + "','" + tripDTO.registernr
-							+ "')ON DUPLICATE KEY UPDATE title='"
-							+ tripDTO.title + "', von='" + tripDTO.von
-							+ "',nach='" + tripDTO.nach + "',skipper='"
-							+ tripDTO.skipper + "',crew='" + tripDTO.crew
-							+ "',start='" + tripDTO.start + "',ende='"
-							+ tripDTO.ende + "',dauer='" + tripDTO.dauer
-							+ "',motor='" + tripDTO.motor + "',tankgefuellt='"
-							+ tripDTO.tankgefuellt + "',notes='"
-							+ tripDTO.notes + "',registernr='"
-							+ tripDTO.registernr + "'");
+			myStatement.execute("insert into tripinformation VALUES ('"
+					+ tripDTO.title + "','" + tripDTO.von + "','"
+					+ tripDTO.nach + "','" + tripDTO.skipper + "','"
+					+ tripDTO.crew + "','" + tripDTO.start + "','"
+					+ tripDTO.ende + "','" + tripDTO.dauer + "','"
+					+ tripDTO.motor + "','" + tripDTO.tankgefuellt + "','"
+					+ tripDTO.notes + "','" + tripDTO.registernr
+					+ "')ON DUPLICATE KEY UPDATE title='" + tripDTO.title
+					+ "', von='" + tripDTO.von + "',nach='" + tripDTO.nach
+					+ "',skipper='" + tripDTO.skipper + "',crew='"
+					+ tripDTO.crew + "',start='" + tripDTO.start + "',ende='"
+					+ tripDTO.ende + "',dauer='" + tripDTO.dauer + "',motor='"
+					+ tripDTO.motor + "',tankgefuellt='" + tripDTO.tankgefuellt
+					+ "',notes='" + tripDTO.notes + "',registernr='"
+					+ tripDTO.registernr + "'");
 			myStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	public void deleteTrip(String title) {
 		try {
 			Statement myStatement = connection.createStatement();
-			myStatement.execute("DELETE FROM seapal.tripinformation WHERE title='"+title+"'");
+			myStatement
+					.execute("DELETE FROM tripinformation WHERE title='"
+							+ title + "'");
 			myStatement.close();
 			// connection.close();
 		} catch (SQLException e) {
@@ -236,6 +241,70 @@ public class Fassade {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// <-------------Entry------------->
+	public HashMap<String, EntryDTO> getEntrysTrip(String triptitle){
+		HashMap<String, EntryDTO> entryDTOMap = new HashMap<String, EntryDTO>();
+		try {
+			ResultSet result = connection.createStatement().executeQuery("Select * From entryinformation where triptitle='"+triptitle+"'");
+			GregorianCalendar time;
+			while(result.next()){
+				time = new GregorianCalendar();
+				time.setTime(result.getTimestamp("time"));
+				entryDTOMap.put(result.getString("name"), new EntryDTO(result.getString("name"),
+						result.getInt("ngrad"), result.getInt("nmin"), result.getInt("nsec"),
+						result.getInt("egrad"), result.getInt("emin"), result.getInt("esec"),
+						result.getDouble("cog"), result.getDouble("sog"), result.getInt("btm"),
+						result.getDouble("dtm"), result.getString("fahrtnach"), result.getString("manoever"),
+						result.getString("vorsegel"), result.getString("grosssegel"), result.getString("notes"),
+						time,result.getString("triptitle")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return entryDTOMap;
+	}
+
+public void saveEntry(EntryDTO entryDTO){
+	try {
+		Statement myStatement = connection.createStatement();
+		myStatement.execute("insert into entryinformation (name,ngrad,nmin,nsec,egrad,emin,esec,cog,sog,btm,dtm,fahrtnach,manoever,vorsegel,grosssegel,notes,triptitle) VALUES ('"
+				+ entryDTO.name + "','" + entryDTO.ngrad + "','"
+				+ entryDTO.nmin + "','" + entryDTO.nsec + "','"
+				+ entryDTO.egrad + "','" + entryDTO.emin + "','"
+				+ entryDTO.esec + "','" + entryDTO.cog + "','"
+				+ entryDTO.sog + "','" + entryDTO.btm + "','"
+				+ entryDTO.dtm + "','" + entryDTO.fahrtNach + "','"
+				+ entryDTO.manoever + "','" + entryDTO.vorsegel + "','"
+				+ entryDTO.grosssegel + "','" + entryDTO.notes + "','" 
+				+ entryDTO.triptitle +"')ON DUPLICATE KEY UPDATE name='" + entryDTO.name +"', ngrad='"+ entryDTO.ngrad + "',nmin='" + entryDTO.nmin + "',nsec='"
+					+ entryDTO.nsec + "',egrad='" + entryDTO.egrad + "',emin='"
+					+ entryDTO.emin + "',esec='" + entryDTO.esec + "',cog='"
+					+ entryDTO.cog + "',sog='" + entryDTO.sog + "',btm='"
+					+ entryDTO.btm + "',dtm='" + entryDTO.dtm + "',fahrtnach='"
+					+ entryDTO.fahrtNach+  "',manoever='" + entryDTO.manoever + "',vorsegel='"
+					+ entryDTO.vorsegel + "',grosssegel='" + entryDTO.grosssegel + "',notes='"
+					+ entryDTO.notes + "',triptitle='"
+					+ entryDTO.triptitle+ "'");
+		myStatement.close();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+public void deleteEntry(String name) {
+	try {
+		Statement myStatement = connection.createStatement();
+		myStatement
+				.execute("DELETE FROM seapal.tripinformation WHERE name='"
+						+ name + "'");
+		myStatement.close();
+		// connection.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 }

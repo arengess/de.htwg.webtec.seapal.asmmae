@@ -15,7 +15,7 @@ public class TripDTO {
 	public int tankgefuellt;
 	public String notes;
 	public String registernr;
-		
+	
 	public TripDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,6 +36,15 @@ public class TripDTO {
 		this.tankgefuellt = tankgefuellt;
 		this.notes = notes;
 		this.registernr = registernr;
+	}
+	public int getTankgefuellt() {
+		return tankgefuellt;
+	}
+	public String isTankgefuelltchecked() {
+		if(tankgefuellt == 1){
+			return "checked";
+		}
+		return "";
 	}
 	public String getTitle() {
 		return title;
@@ -90,9 +99,6 @@ public class TripDTO {
 	}
 	public void setMotor(int motor) {
 		this.motor = motor;
-	}
-	public int isTankgefuellt() {
-		return tankgefuellt;
 	}
 	public void setTankgefuellt(int tankgefuellt) {
 		this.tankgefuellt = tankgefuellt;

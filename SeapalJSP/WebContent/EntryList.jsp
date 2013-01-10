@@ -7,39 +7,45 @@
 		<table>
 			<thead>
 				<tr>
-				
+					<th>Registernr.</th>
+					<th>Bootsname</th>
+					<th>Eigner</th>
+					<th>Typ</th>
+					<th>Baujahr</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-						Fassade fassade = new Fassade();
-						HashMap<String, TripDTO> tripDTOMap = fassade.getTripList(request
-								.getParameter("registernr"));
-						for (String key : tripDTOMap.keySet()) {
-							TripDTO tripDTO = tripDTOMap.get(key);
-							out.write("<tr class='row' id='"
-									+ tripDTO.title
-									+ "'>"
-									+ "<td>"
-									+ tripDTO.getTitle()
-									+ "</td>"
-									+ "<td>"
-									+ tripDTO.getVon()
-									+ "</td>"
-									+ "<td>"
-									+ tripDTO.getNach()
-									+ "</td>"
-									+ "<td><a href='http://localhost:8080/SeapalJSP/EntryInfo.jsp?title="
-									+ tripDTO.getTitle() + "'><input type='button' value='-->'/></a></td>"+
-									"<td class='hidden'>"+ tripDTO.getSkipper()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.getCrew()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.getStart()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.getEnde()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.getDauer()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.getMotor()+"</td>"+
-									"<td class='hidden'>"+ tripDTO.isTankgefuellt()+"</td></tr>");
-						}
-					%>
+					Fassade fassade = new Fassade();
+					HashMap<String, TripDTO> tripDTOMap = fassade.getTripList(request
+							.getParameter("registernr"));
+					for (String key : tripDTOMap.keySet()) {
+						TripDTO tripDTO = tripDTOMap.get(key);
+						out.write("<tr class='row' id='"
+								+ tripDTO.title
+								+ "'>"
+								+ "<td>"
+								+ tripDTO.getTitle()
+								+ "</td>"
+								+ "<td>"
+								+ tripDTO.getVon()
+								+ "</td>"
+								+ "<td>"
+								+ tripDTO.getNach()
+								+ "</td>"
+								+ "<td><a href='http://localhost:8080/SeapalJSP/EntryInfo.jsp?title="
+								+ tripDTO.getTitle()
+								+ "'><input type='button' value='-->'/></a></td>"
+								+ "<td class='hidden'>" + tripDTO.getSkipper()
+								+ "</td>" + "<td class='hidden'>" + tripDTO.getCrew()
+								+ "</td>" + "<td class='hidden'>" + tripDTO.getStart()
+								+ "</td>" + "<td class='hidden'>" + tripDTO.getEnde()
+								+ "</td>" + "<td class='hidden'>" + tripDTO.getDauer()
+								+ "</td>" + "<td class='hidden'>" + tripDTO.getMotor()
+								+ "</td>" + "<td class='hidden'>"
+								+ tripDTO.getTankgefuellt() + "</td></tr>");
+					}
+				%>
 			</tbody>
 		</table>
 	</fieldset>

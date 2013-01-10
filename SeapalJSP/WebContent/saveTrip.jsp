@@ -18,7 +18,7 @@
 		tripDTO.motor = Integer.parseInt(request.getParameter("motor"));
 	}
 	if (!(request.getParameter("tankgefuellt").isEmpty())) {
-		tripDTO.tankgefuellt = Boolean.parseBoolean(request
+		tripDTO.tankgefuellt = Integer.parseInt(request
 				.getParameter("tankgefuellt"));
 	}
 	tripDTO.notes = request.getParameter("notes");
