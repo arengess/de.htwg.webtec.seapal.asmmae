@@ -1,4 +1,5 @@
 var triptitle;
+var entryName;
 alert("geladen");
 $(document).ready(function() {
 	triptitle = $("#triptitle").val();
@@ -28,7 +29,7 @@ $(document).ready(function() {
 				"<input type='text' id='newEntryName'>");
 		$(this).hide();
 		$("#ok").click(function(){
-			var entryName = $("#newEntryName").val();
+			entryName = $("#newEntryName").val();
 			$.ajax({
 				type : "POST",
 				url : "saveEntry.jsp?triptitle=" + triptitle+"&name="+entryName+"&ngrad=&nmin=&nsec=&egrad=&emin=&esec=&btm=&dtm=&cog=&sog=&fahrtNach=null&manoever=null&vorsegel=null&grosssegel=null",
