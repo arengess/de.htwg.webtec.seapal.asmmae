@@ -323,7 +323,7 @@ public void deleteEntry(String name) {
 	try {
 		Statement myStatement = connection.createStatement();
 		myStatement
-				.execute("DELETE FROM seapal.tripinformation WHERE name='"
+				.execute("DELETE FROM entryinformation WHERE name='"
 						+ name + "'");
 		myStatement.close();
 		// connection.close();

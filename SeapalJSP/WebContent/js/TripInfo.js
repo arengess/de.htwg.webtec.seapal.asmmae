@@ -1,5 +1,5 @@
 var triptitle;
-var entryName;
+var aktuellerEntry;
 $(document).ready(function() {
 	triptitle = $("#triptitle").val();
 	loadEntryList();
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$("#delete").click(function() {
 		$.ajax({
 			type : "POST",
-			url : "deleteEntry.jsp?name="+entryName,
+			url : "deleteEntry.jsp?name="+aktuellerEntry,
 			success : function() {
 				loadEntryList();
 			}
@@ -28,7 +28,7 @@ $(document).ready(function() {
 				"<input type='text' id='newEntryName'>");
 		$(this).hide();
 		$("#ok").click(function(){
-			entryName = $("#newEntryName").val();
+			var entryName = $("#newEntryName").val();
 			$.ajax({
 				type : "POST",
 				url : "saveEntry.jsp?triptitle=" + triptitle+"&name="+entryName+"&ngrad=&nmin=&nsec=&egrad=&emin=&esec=&btm=&dtm=&cog=&sog=&fahrtNach=null&manoever=null&vorsegel=null&grosssegel=null",
