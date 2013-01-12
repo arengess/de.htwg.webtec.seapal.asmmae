@@ -1,6 +1,5 @@
 var triptitle;
 var entryName;
-alert("geladen");
 $(document).ready(function() {
 	triptitle = $("#triptitle").val();
 	loadEntryList();
