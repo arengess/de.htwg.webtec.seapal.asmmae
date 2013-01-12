@@ -1,21 +1,23 @@
-var aktuellerEntry;
+var triptitle;
+alert("geladen");
 $(document).ready(function() {
+	triptitle = $("#triptitle").val();
 	loadEntryList();
-	$("input[type=text]").keyup(function(e) {
-		if (e.keyCode == 13) {
+	$("#saveTrip").click(function() {
 			var fields = $("form").serializeArray();
 			$.ajax({
 				type : "POST",
 				url : "saveTrip.jsp",
-				data : fields
+				data : fields,
+				success: function(){
+					alert("Trip gespeichert");
+				}
 			});
-		}
 	});
 	$("#delete").click(function() {
-		var triptitle = $("#triptitle").val();
 		$.ajax({
 			type : "POST",
-			url : "deleteEntry.jsp?title=" + triptitle+"&name="+aktuellerEntry,
+			url : "deleteEntry.jsp?name="+entryName,
 			success : function() {
 				loadEntryList();
 			}
@@ -26,11 +28,10 @@ $(document).ready(function() {
 				"<input type='text' id='newEntryName'>");
 		$(this).hide();
 		$("#ok").click(function(){
-			var entryName = $("#newEntry").val();
-			var triptitle = $("#triptitle").text();
+			var entryName = $("#newEntryName").val();
 			$.ajax({
 				type : "POST",
-				url : "saveEntry.jsp?name="+entryName+"&von=&nach=&skipper=&crew=&start=&ende=&dauer=&motor=&notes=&tankgefuellt=&registernr="+reg,
+				url : "saveEntry.jsp?triptitle=" + triptitle+"&name="+entryName+"&ngrad=&nmin=&nsec=&egrad=&emin=&esec=&btm=&dtm=&cog=&sog=&fahrtNach=null&manoever=null&vorsegel=null&grosssegel=null",
 				success: function(){
 					loadEntryList();
 					$("#newEntry").show();
@@ -43,7 +44,7 @@ $(document).ready(function() {
 });
 function loadEntryList() {
 	$("#Entrytabelle").empty();
-	$("#Entrytabelle").load("EntryList.jsp", function() {
+	$("#Entrytabelle").load("EntryList.jsp?triptitle="+triptitle , function() {
 		$(".row").mouseover(function() {
 			$(this).css({
 				"background-color" : "grey"

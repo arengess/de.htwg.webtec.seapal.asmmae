@@ -247,23 +247,48 @@ public class Fassade {
 		HashMap<String, EntryDTO> entryDTOMap = new HashMap<String, EntryDTO>();
 		try {
 			ResultSet result = connection.createStatement().executeQuery("Select * From entryinformation where triptitle='"+triptitle+"'");
-			GregorianCalendar time;
+//			GregorianCalendar time;
 			while(result.next()){
-				time = new GregorianCalendar();
-				time.setTime(result.getTimestamp("time"));
+//				time = new GregorianCalendar();
+//				time.setTime(result.getTimestamp("time"));
 				entryDTOMap.put(result.getString("name"), new EntryDTO(result.getString("name"),
 						result.getInt("ngrad"), result.getInt("nmin"), result.getInt("nsec"),
 						result.getInt("egrad"), result.getInt("emin"), result.getInt("esec"),
 						result.getDouble("cog"), result.getDouble("sog"), result.getInt("btm"),
 						result.getDouble("dtm"), result.getString("fahrtnach"), result.getString("manoever"),
 						result.getString("vorsegel"), result.getString("grosssegel"), result.getString("notes"),
-						time,result.getString("triptitle")));
+//						time,
+						result.getString("triptitle")
+						)
+				);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return entryDTOMap;
+	}
+	public EntryDTO getEntry(String entryName){
+		EntryDTO entryDTO = null;
+		try {
+			ResultSet result = connection.createStatement().executeQuery("Select * From entryinformation where name='"+entryName+"'");
+//			GregorianCalendar time;
+			while(result.next()){
+//				time = new GregorianCalendar();
+//				time.setTime(result.getTimestamp("time"));
+				entryDTO = new EntryDTO(result.getString("name"),
+						result.getInt("ngrad"), result.getInt("nmin"), result.getInt("nsec"),
+						result.getInt("egrad"), result.getInt("emin"), result.getInt("esec"),
+						result.getDouble("cog"), result.getDouble("sog"), result.getInt("btm"),
+						result.getDouble("dtm"), result.getString("fahrtnach"), result.getString("manoever"),
+						result.getString("vorsegel"), result.getString("grosssegel"), result.getString("notes"),
+						result.getString("triptitle"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return entryDTO;
 	}
 
 public void saveEntry(EntryDTO entryDTO){

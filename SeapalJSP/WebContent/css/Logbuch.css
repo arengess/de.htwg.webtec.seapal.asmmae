@@ -1,19 +1,19 @@
-.BInfo {
+.Info {
 	display: inline-block;
 }
 
-#BInfoLinks {
+#InfoLinks {
 	position:relative;
 	margin-right:10%;
 	
 }
 
-#BInfoMitte {
+#InfoMitte {
 	position:relative;
 	margin-right:10%;
 }
 
-.BInfo input {
+.Info input {
 	display: block;
 }
 
@@ -28,3 +28,10 @@ td a{
 	display: block;
 }
 
+.smallInput input{
+	width: 30px;
+}
+
+.InputLine{
+	display: -webkit-box
+}

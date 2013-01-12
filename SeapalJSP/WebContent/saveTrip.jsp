@@ -3,7 +3,7 @@
 <%@page import="fassade.*"%>
 <%
 	TripDTO tripDTO = new TripDTO();
-	tripDTO.title = request.getParameter("title");
+	tripDTO.title = request.getParameter("triptitle");
 	tripDTO.von = request.getParameter("von");
 	tripDTO.nach = request.getParameter("nach");
 	tripDTO.skipper = request.getParameter("skipper");
@@ -17,9 +17,10 @@
 	if (!(request.getParameter("motor").isEmpty())) {
 		tripDTO.motor = Integer.parseInt(request.getParameter("motor"));
 	}
-	if (!(request.getParameter("tankgefuellt").isEmpty())) {
-		tripDTO.tankgefuellt = Integer.parseInt(request
-				.getParameter("tankgefuellt"));
+	if (request.getParameterMap().containsKey("tankgefuellt")) {
+		tripDTO.setTankgefuellt(1);
+	}else{
+		tripDTO.setTankgefuellt(0);
 	}
 	tripDTO.notes = request.getParameter("notes");
 	tripDTO.registernr = request.getParameter("registernr");

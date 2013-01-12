@@ -1,6 +1,8 @@
 var aktuellerTrip;
+var registernr;
 
 $(document).ready(function() {
+	registernr = $("#registernr").text();
 	loadTripList();
 	$("#delete").click(function() {
 		$.ajax({
@@ -17,10 +19,9 @@ $(document).ready(function() {
 		$(this).hide();
 		$("#ok").click(function(){
 			var titel = $("#newtitle").val();
-			var reg = $("#registernr").text();
 			$.ajax({
 				type : "POST",
-				url : "saveTrip.jsp?title="+titel+"&von=&nach=&skipper=&crew=&start=&ende=&dauer=&motor=&notes=&tankgefuellt=&registernr="+reg,
+				url : "saveTrip.jsp?triptitle="+titel+"&von=&nach=&skipper=&crew=&start=&ende=&dauer=&motor=&notes=&tankgefuellt=&registernr="+registernr,
 				success: function(){
 					loadTripList();
 					$("#newTrip").show();
@@ -32,9 +33,8 @@ $(document).ready(function() {
 	});
 });
 function loadTripList() {
-	var reg = $("#registernr").text();
 	$("#Triptabelle").empty();
-	$("#Triptabelle").load("TripList.jsp?registernr="+reg , function(){
+	$("#Triptabelle").load("TripList.jsp?registernr="+registernr , function(){
 		
 		$(".row").mouseover(function(){
 			$(this).css({

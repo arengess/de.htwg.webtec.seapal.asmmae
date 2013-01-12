@@ -17,47 +17,47 @@
 			<fieldset>
 				<%
 					Fassade fassade = new Fassade();
-					String tripTitle = request.getParameter("title");
-					TripDTO tripDTO = fassade.getTrip(tripTitle);
-					out.write("<div id='BInfoLinks' class='BInfo'>"
+					TripDTO tripDTO = fassade.getTrip(request.getParameter("title"));
+					out.write("<div id='InfoLinks' class='Info'>"
 							+ "<p><label for='triptitle'>Trip Titel:</label>"
-							+ "<input type='text'name='triptitle' id='triptitle' tabindex='1' value='"
+							+ "<input type='text' name='triptitle' id='triptitle' tabindex='1' value='"
 							+ tripDTO.getTitle()
 							+ "' /></p>"
 							+ "<p><label for='von'>Von:</label> <input type='text' name='von'id='von' tabindex='2' value='"
 							+ tripDTO.getVon()
-							+ "' /></p>"
+							+ "'/></p>"
 							+ "<p><lab el for='nach'>Nach:</label> <input type='text' name='nach'id='nach' tabindex='3' value='"
 							+ tripDTO.getNach()
-							+ "' /></p><p><label for='skipper'>Skipper:</label> <input type='text'name='skipper' id='skipper' value='"
+							+ "' /></p><p><label for='skipper'>Skipper:</label> <input type='text' name='skipper' id='skipper' value='"
 							+ tripDTO.getSkipper()
-							+ "' tabindex='4' /></p></div><div id='BInfoMitte' class='BInfo'><p><label for='crew'>Crew:</label><textarea name='crew' cols='30' rows='8' tabindex='5' value='"
+							+ "' tabindex='4' /></p></div><div id='InfoMitte' class='Info'><p><label for='crew'>Crew:</label><textarea name='crew' cols='30' rows='8' tabindex='5' value='"
 							+ tripDTO.getCrew()
-							+ "' id='crew'></textarea></p><p><label for='tankgefuellt'>Tank gef&uuml;llt?</label> <inputtype='checkbox' name='tankgefuellt' id='tankgefuellt'tabindex='10' value='1' "
+							+ "' id='crew'></textarea></p><p><label for='tankgefuellt'>Tank gef&uuml;llt?</label> <input type='checkbox' name='tankgefuellt' id='tankgefuellt'tabindex='10' value='1' "
 							+ tripDTO.isTankgefuelltchecked()
-							+ "' /></p></div><div id='BInfoRechts' class='BInfo'><p><label for='start'>Start:</label> <input type='text' name='start'id='start' tabindex='6' value='"
+							+ " /></p></div><div id='InfoRechts' class='Info'><p><label for='start'>Start:</label> <input type='text' name='start' id='start' tabindex='6' value='"
 							+ tripDTO.getStart()
-							+ "' /></p><p><label for='ende'>Ende:</label> <input type='text' name='ende'id='ende' value='"
+							+ "' /></p><p><label for='ende'>Ende:</label> <input type='text' name='ende' id='ende' value='"
 							+ tripDTO.getEnde()
-							+ "' tabindex='7' /></p><p><label for='dauer'>Dauer:</label> <input type='text' name='dauer'id='dauer' value='"
+							+ "' tabindex='7' /></p><p><label for='dauer'>Dauer:</label><input type='text' name='dauer' id='dauer' value='"
 							+ tripDTO.getDauer()
-							+ "' tabindex='8' /></p><p><label for='motor'>Motor(min):</label> <input type='text'name='motor' value='"
+							+ "' tabindex='8' /></p><p><label for='motor'>Motor(min):</label> <input type='text' name='motor' value='"
 							+ tripDTO.getMotor()
-							+ "' id='motor' tabindex='9' /></p></div>");
+							+ "' id='motor' tabindex='9' /></p>"+"<p visibility: hidden><input   type='text' id='registernr' name='registernr' value='"
+							+ tripDTO.getRegisternr() + "' /></p></div>");
 				%>
 
 			</fieldset>
 		</div>
 		<div class="infoZeile">
-			<div id='divnotes' class="BInfo">
+			<div id='divnotes' class="Info">
 				<textarea name="notes" id="notes" cols="40" rows="21"
 					placeholder="Notizen"></textarea>
 			</div>
 
-			<div id='divscreen' class="BInfo">
+			<div id='divscreen' class="Info">
 				<img src="img/TestScreenshot.PNG" alt="Screenshots">
 			</div>
-			<div id='divimage' class="BInfo">
+			<div id='divimage' class="Info">
 				<img src="img/NoImage.PNG" alt="Bild">
 			</div>
 		</div>
@@ -66,8 +66,10 @@
 		<div id="Entrytabelle"></div>
 	</div>
 	<div class="infoZeile">
-		<input class="buttonLinks" type="button" value="Neuer Wegpunkt" id="newEntry"/> <input
-			class="buttonLinks" type="button" value="Wegpunkt Loeschen" id="delete"/> <input
+		<input class="buttonLinks" type="button" value="Neuer Wegpunkt"
+			id="newEntry" /> <input class="buttonLinks" type="button"
+			value="Wegpunkt Loeschen" id="delete" /> <input class="buttonRechts"
+			type="button" value="Trip Spreichern" id="saveTrip" /><input
 			class="buttonLinks" type="button" value="Filter" /> <input
 			class="buttonRechts" type="button" value="Erster" /> <input
 			class="buttonRechts" type="button" value="Letzter" /> <input

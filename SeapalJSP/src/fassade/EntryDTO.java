@@ -31,8 +31,8 @@ public class EntryDTO {
 	public EntryDTO(String name, int ngrad, int nmin, int nsec, int egrad,
 			int emin, int esec, double cog, double sog, int btm, double dtm,
 			String fahrtNach, String manoever, String vorsegel,
-			String grosssegel, String notes, GregorianCalendar time,
-			String triptitle) {
+			String grosssegel, String notes,String triptitle
+			) {
 		super();
 		this.name = name;
 		this.ngrad = ngrad;
@@ -50,7 +50,7 @@ public class EntryDTO {
 		this.vorsegel = vorsegel;
 		this.grosssegel = grosssegel;
 		this.notes = notes;
-		this.time = time;
+//		this.time = time;
 		this.triptitle = triptitle;
 	}
 	public String getName() {
