@@ -9,6 +9,7 @@
 
 		<title>SeaPal</title>
 		<link rel="icon" type="image/png" href="http://seapal.de/images/Icon-32.png">
+		<link rel="stylesheet" href="css/style.css" />
 		<noscript>
 			<link rel="stylesheet" href="css/5grid/core.css" />
 			<link rel="stylesheet" href="css/5grid/core-desktop.css" />
@@ -39,29 +40,13 @@
 		s.parentNode.insertBefore(ga, s);
 		})();
 		</script> -->
-		<style type="text/css">
-			@import "css/style.css";
-		</style>
 	</head>
 	<body data-twttr-rendered="true">
 		<div id="wrapper">
 			<div id="header-wrapper">
 				<?php include("header.php")?>
 			</div>
-			<div class="5grid-layout">
-				<div class="row">
-					<div class="12u">
-						<div id="banner">
-							<div class="image-box">
-								<img src="./SeaPal_files/SeaPal-Screen-Horiz01.jpg" width="1180px" height="354px" alt="">
-								<!-- 								<div class="caption">
-								<span>The App for sailors and water sport fanatics</span>
-								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php include("banner.php")?>
 			<!--end 5grid-layout-->
 			<!-- 			<div class="divider"></div> -->
 			<div id="featured-content-wrapper">

@@ -18,6 +18,7 @@
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="css/5grid/jquery.js"></script>
 		<script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.openerWidth=52"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCneWH2oTmRpX93qQt1LvowQyULSGqbjSc&sensor=false"></script>
@@ -42,10 +43,6 @@
 		s.parentNode.insertBefore(ga, s);
 		})();
 		</script> -->
-		<style type="text/css">
-			@import "css/style.css";
-		</style>
-
 	</head>
 	<body data-twttr-rendered="true" onload="initialize()">
 		<div id="wrapper">
