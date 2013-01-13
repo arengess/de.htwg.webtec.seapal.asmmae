@@ -1,11 +1,11 @@
 function update_div(){
-	$('#dynamic_view').load('dynamic_view.php');
+	$("#dynamic_view").load("dynamic_view.php");
 	reset_form();
 }
 
 function set_values(tableRow){
 	var nodes = tableRow.getElementsByTagName("td");
-	selected_row_key=nodes[1].innerHTML;
+	selected_row_key = nodes[1].innerHTML;
 	$("#bootsname").value = nodes[0].innerHTML;
 	$("#registernr").value = nodes[1].innerHTML;
 	$("#segelzeichen").value = nodes[2].innerHTML;
@@ -33,30 +33,30 @@ function set_values(tableRow){
 }
 
 function reset_form(){
-	$("#registernr').value="";
-	$("#bootsname').value="";
-	$("#segelzeichen').value="";
-	$("#heimathafen').value="";
-	$("#yachtclub').value="";
-	$("#eigner').value="";
-	$("#versicherung').value="";
-	$("#rufzeichen').value="";
-	$("#typ').value="";
-	$("#konstrukteur').value="";
-	$("#laenge').value="";
-	$("#breite').value="";
-	$("#tiefgang').value="";
-	$("#masthoehe').value="";
-	$("#verdraengung').value="";
-	$("#rigArt').value="";
-	$("#baujahr').value="";
-	$("#motor').value="";
-	$("#tankgroesse').value="";
-	$("#wassertankgroesse').value="";
-	$("#abwassertankgroesse').value="";
-	$("#grosssegelgroesse').value="";
-	$("#genuagroesse').value="";
-	$("#spie').value="";
+	$("#registernr").value="";
+	$("#bootsname").value="";
+	$("#segelzeichen").value="";
+	$("#heimathafen").value="";
+	$("#yachtclub").value="";
+	$("#eigner").value="";
+	$("#versicherung").value="";
+	$("#rufzeichen").value="";
+	$("#typ").value="";
+	$("#konstrukteur").value="";
+	$("#laenge").value="";
+	$("#breite").value="";
+	$("#tiefgang").value="";
+	$("#masthoehe").value="";
+	$("#verdraengung").value="";
+	$("#rigArt").value="";
+	$("#baujahr").value="";
+	$("#motor").value="";
+	$("#tankgroesse").value="";
+	$("#wassertankgroesse").value="";
+	$("#abwassertankgroesse").value="";
+	$("#grosssegelgroesse").value="";
+	$("#genuagroesse").value="";
+	$("#spie").value="";
 }
 
 function edit_Node(regex, input, helpId, helpMessage){
@@ -65,7 +65,7 @@ function edit_Node(regex, input, helpId, helpMessage){
 
 			while (helpId.firstChild) 
 				helpId.removeChild(helpId.firstChild);
-			
+		
 			helpId.appendChild(document.createTextNode(helpMessage)); 
 			return false;
 		}
@@ -83,7 +83,6 @@ function edit_Node(regex, input, helpId, helpMessage){
 function regEx1(inputField, helpId) {			
 	return edit_Node(/[A-Za-z'\-\s]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
 }
-
 function regEx2(inputField, helpId) {			
 	return edit_Node(/[\w]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
 }
@@ -105,12 +104,6 @@ function regEx7(inputField, helpId) {
 function regEx8(inputField, helpId) {			
 	return edit_Node(/[\d]{1,4}/, inputField.value, helpId, "Ungültige Eingabe!");
 }
-
 function regEx9(inputField, helpId) {			
 	return edit_Node(/[\d]{2,4}/, inputField.value, helpId, "Ungültige Eingabe!");
 }
-
-
-
-				
-	

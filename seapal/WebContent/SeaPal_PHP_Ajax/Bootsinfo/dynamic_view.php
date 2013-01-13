@@ -1,12 +1,11 @@
 <?php
 
-include ("./dbscript/B_dynView.js");
 $connection =
 include ("../connect.php");
 
 $select = "SELECT Bootsname, Registernr, Segelzeichen, Heimathafen, Yachtclub, Eigner, Versicherung, Rufzeichen, Typ, Konstrukteur, Laenge, 
 Breite, Tiefgang, Masthoehe, Verdraengung, RigArt, Baujahr, Motor, Tankgroesse, Wassertankgroesse, Abwassertankgroesse, Grosssegelgroesse, Genuagroesse, Spiegroesse 
-FROM BoatInformation";
+FROM Boatinformation";
 $result = mysql_query($select) or die("MySQL ERROR: " . mysql_error());
 
 echo " <table border='1' rules='groups' cellspacing='10' cellpadding='10' >
@@ -41,7 +40,7 @@ while ($row = mysql_fetch_array($result)) {
 	echo "<td style='display:none'>" . $row['Grosssegelgroesse'] . "</td>";
 	echo "<td style='display:none'>" . $row['Genuagroesse'] . "</td>";
 	echo "<td style='display:none'>" . $row['Spiegroesse'] . "</td>";
-	echo "<td><a style='text-decoration:none' href='../triplist_php_ajax/triplist.php?val=".$row['registernr']."'>Trips</a></td>";
+	echo "<td><a style='text-decoration:none' href='../triplist_php_ajax/triplist.php?val=".$row['Registernr']."'>Trips</a></td>";
 	echo "</tr>";
 }
 echo "</tbody></table>";
