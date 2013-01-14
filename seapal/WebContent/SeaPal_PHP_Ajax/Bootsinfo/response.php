@@ -2,7 +2,7 @@
 	$connection = include("../connect.php");
 	$select = "SELECT bootsname,registernr,segelzeichen,heimathafen,yachtclub,eigner,versicherung,rufzeichen,typ,konstrukteur,laenge,
     						breite,tiefgang,masthoehe,verdraengung,rigArt,baujahr,motor,tankgroesse,wassertankgroesse,abwassertankgroesse,
-    						grosssegelgroesse,genuagroesse,spie FROM boatinformation";
+    						grosssegelgroesse,genuagroesse,spiegroesse FROM boatinformation";
     $result = mysql_query($select) or die ("MySQL ERROR: " . mysql_error());
 	$response = array();
 	$count = 0;
@@ -31,7 +31,7 @@
 			'abwassertankgroesse' => $row['abwassertankgroesse'],
 			'grosssegelgroesse' => $row['grosssegelgroesse'],
 			'genuagroesse' => $row['genuagroesse'],
-			'spie' => $row['spie'],
+			'spie' => $row['spiegroesse'],
 		);
 		$count++;
 	}

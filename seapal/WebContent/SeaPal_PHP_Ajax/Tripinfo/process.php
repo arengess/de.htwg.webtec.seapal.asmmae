@@ -1,5 +1,5 @@
 <?php
-	$connection = include("../../connection.php");
+	$connection = include("../connect.php");
 	$action = $_POST['action'];
 	$res = array();
 	

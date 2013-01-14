@@ -8,12 +8,13 @@ Breite, Tiefgang, Masthoehe, Verdraengung, RigArt, Baujahr, Motor, Tankgroesse, 
 FROM Boatinformation";
 $result = mysql_query($select) or die("MySQL ERROR: " . mysql_error());
 
-echo " <table border='1' rules='groups' cellspacing='10' cellpadding='10' >
+echo "<table border='1' rules='groups' cellspacing='10' cellpadding='10'>
 <thead><tr><th>Bootsname</th><th>Registernr</th><th>Inhaber</th><th>Typ</th><th>Konstrukteur</th><th>Laenge</th></tr></thead>
 <tfoot>
 <tr><td colspan = 5><input type='button' onclick='delete_entry();' value='Ausgewaehlten Eintrag L&ouml;schen'/></td></tr>
 </tfoot>
-<tbody> ";
+<tbody>";
+
 while ($row = mysql_fetch_array($result)) {
 	echo "<tr class='row' onclick='Change_Background(this);'>";
 	echo "<td>" . $row['Bootsname'] . "</td>";
@@ -40,10 +41,10 @@ while ($row = mysql_fetch_array($result)) {
 	echo "<td style='display:none'>" . $row['Grosssegelgroesse'] . "</td>";
 	echo "<td style='display:none'>" . $row['Genuagroesse'] . "</td>";
 	echo "<td style='display:none'>" . $row['Spiegroesse'] . "</td>";
-	echo "<td><a style='text-decoration:none' href='../triplist_php_ajax/triplist.php?val=".$row['Registernr']."'>Trips</a></td>";
+	echo "<td><a style='text-decoration:none' href='../triplist_php_ajax/triplist.php?val=" . $row['Bootsname'] . "'>Trips</a></td>";
 	echo "</tr>";
 }
 echo "</tbody></table>";
 
 mysql_close($connection);
-?>	
+?>

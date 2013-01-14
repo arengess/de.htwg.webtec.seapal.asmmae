@@ -1,6 +1,7 @@
 $(function() {
     $('#form').keyup(function(e) {
         if (e.keyCode === 13) {
+            
             boat = new Array(
                 document.getElementById('registernr').value, 
                 document.getElementById('bootsname').value, 
@@ -27,13 +28,13 @@ $(function() {
                 document.getElementById('genuagroesse').value, 
                 document.getElementById('spie').value
                 );
-            
             sendBoat(boat);
         }
     });
 });
 
 function sendBoat(boat) {
+   
     $.ajax({
         type : 'POST',
         url : 'process.php',
@@ -66,7 +67,9 @@ function sendBoat(boat) {
         },
         dataType : 'json',
         success : function(data) {
-            alert(data['msg']); complete : update_div();
+            alert(data['msg']); 
+            alert("success");
+            complete : update_div();
         }
     });
 }
