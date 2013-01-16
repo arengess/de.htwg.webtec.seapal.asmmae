@@ -56,7 +56,7 @@
 				<div class="12u">
 					<div class="5grid-layout" id="onecolumn">
 						<div class="row">
-							<div class="12u">
+							<div class="7u">
 								<section>
 									<div class="post">
 										<h1 class="title">User Guide</h1>
@@ -188,31 +188,31 @@
 									</div>
 								</section>
 							</div>
+							<div class="1u">
+								&nbsp;
+							</div>
+							<!-- end #content -->
+							<div class="4u" id="sidebar1">
+								<section>
+									<h2>Quick Access</h2>
+									<ul class="list-style1">
+										<li class="first">
+											<a href="#Installing_SeaPal">Installing SeaPal</a>
+										</li>
+										<li>
+											<a href="#Starting_SeaPal">Starting SeaPal</a>
+										</li>
+										<li>
+											<a href="#Map_Selection">Map Selection</a>
+										</li>
+										<li>
+											<a href="http://seapal.de/images/Legend-IBN-Map.pdf">Legend of IBN Maps</a>
+										</li>
+									</ul>
+								</section>
+							</div>
 						</div>
 
-						<div style="clear: both;">
-							&nbsp;
-						</div>
-					</div>
-					<!-- end #content -->
-					<div id="sidebar">
-						<div id="box1">
-							<h2>Quick Access</h2>
-							<ul class="list-style1">
-								<li class="first">
-									<a href="#Installing_SeaPal">Installing SeaPal</a>
-								</li>
-								<li>
-									<a href="#Starting_SeaPal">Starting SeaPal</a>
-								</li>
-								<li>
-									<a href="#Map_Selection">Map Selection</a>
-								</li>
-								<li>
-									<a href="http://seapal.de/images/Legend-IBN-Map.pdf">Legend of IBN Maps</a>
-								</li>
-							</ul>
-						</div>
 					</div>
 					<!-- end #sidebar -->
 					<div style="clear: both;">
