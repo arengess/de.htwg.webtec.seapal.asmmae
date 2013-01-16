@@ -2,7 +2,7 @@
 
 if (isset($_POST['Registernr'])) {
 	$con =
-	include ("./dbscript/connect.php");
+	include ("../connect.php");
 	
 	$bootsname = $_POST['Bootsname'];
 	$registernr = $_POST['Registernr'];

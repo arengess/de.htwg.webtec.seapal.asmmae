@@ -3,29 +3,29 @@
 <head>
 	<title>Entry Information</title>
 	<script type="text/javascript" src="./JS/entryinformation.js"></script>
-	<script type="text/javascript" src="./JS/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="../jquery-1.8.2.js"></script>
 	<script type='text/javascript'>
 	$(function(){
 		$('#form').keyup(function (e){
 			if (e.keyCode==13){
 				entry = new Array(
-					$('#triptitle').value,
-					$('#name').value,
-					$('#ngrad').value,
-					$('#nmin').value,
-					$('#nsec').value,
-					$('#egrad').value,
-					$('#emin').value,
-					$('#esec').value,
-					$('#cog').value,
-					$('#sog').value,
-					$('#btm').value,
-					$('#dtm').value,
-					$('#fahrtnach').options[fahrtnach.selectedIndex].value,
-					$('#manoever').options[manoever.selectedIndex].value,
-					$('#vorsegel').options[vorsegel.selectedIndex].value,
-					$('#grosssegel').options[grosssegel.selectedIndex].value,
-					$('#notes').value
+					document.getElementById('triptitle').value,
+					document.getElementById('name').value,
+					document.getElementById('ngrad').value,
+					document.getElementById('nmin').value,
+					document.getElementById('nsec').value,
+					document.getElementById('egrad').value,
+					document.getElementById('emin').value,
+					document.getElementById('esec').value,
+					document.getElementById('cog').value,
+					document.getElementById('sog').value,
+					document.getElementById('btm').value,
+					document.getElementById('dtm').value,
+					document.getElementById('fahrtnach').options[fahrtnach.selectedIndex].value,
+					document.getElementById('manoever').options[manoever.selectedIndex].value,
+					document.getElementById('vorsegel').options[vorsegel.selectedIndex].value,
+					document.getElementById('grosssegel').options[grosssegel.selectedIndex].value,
+					document.getElementById('notes').value
 				);
 				entry_send(entry);
 			}
@@ -57,7 +57,7 @@
 			dataType : 'json',
 			success : function(data){
 			 	alert(data['msg']);
-				window.location.href = "../tripinformation_php_ajax/tripinformation.php?val="+entry[0];
+				window.location.href = "../Tripinfo/tripinformation.php?val="+entry[0];
 			 }
 		});
 	}

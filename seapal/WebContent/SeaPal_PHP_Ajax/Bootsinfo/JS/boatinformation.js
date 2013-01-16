@@ -1,116 +1,117 @@
-function update_div(){
-	$('#dynamic_view').load('dynamic_view.php');
-	reset_form();
+function update_div() {
+    $('#dynamic_view').fadeOut('slow').load('dynamic_view.php').fadeIn('slow');
+    reset_form();
 }
 
-function set_values(tableRow){
-	var nodes = tableRow.getElementsByTagName("td");
-	selected_row_key=nodes[1].innerHTML;
-	$("#bootsname").value = nodes[0].innerHTML;
-	$("#registernr").value = nodes[1].innerHTML;
-	$("#segelzeichen").value = nodes[2].innerHTML;
-	$("#heimathafen").value = nodes[3].innerHTML;
-	$("#yachtclub").value = nodes[4].innerHTML;
-	$("#eigner").value = nodes[5].innerHTML;
-	$("#versicherung").value = nodes[6].innerHTML;
-	$("#rufzeichen").value = nodes[7].innerHTML;
-	$("#typ").value = nodes[8].innerHTML;
-	$("#konstrukteur").value = nodes[9].innerHTML;
-	$("#laenge").value = nodes[10].innerHTML;
-	$("#breite").value = nodes[11].innerHTML;
-	$("#tiefgang").value = nodes[12].innerHTML;
-	$("#masthoehe").value = nodes[13].innerHTML;
-	$("#verdraengung").value = nodes[14].innerHTML;
-	$("#rigArt").value = nodes[15].innerHTML;
-	$("#baujahr").value = nodes[16].innerHTML;
-	$("#motor").value = nodes[17].innerHTML;
-	$("#tankgroesse").value = nodes[18].innerHTML;
-	$("#wassertankgroesse").value = nodes[19].innerHTML;
-	$("#abwassertankgroesse").value = nodes[20].innerHTML;
-	$("#grosssegelgroesse").value = nodes[21].innerHTML;
-	$("#genuagroesse").value = nodes[22].innerHTML;
-	$("#spie").value = nodes[23].innerHTML;	
+var oldTableRow;
+function set_values(tableRow) {
+    //Zeilen färben
+    if (oldTableRow) {
+        oldTableRow.style.backgroundColor = '';
+    }
+    oldTableRow = tableRow;
+    tableRow.style.backgroundColor = '#a9a9a9'
+    
+    //Content einfügen
+    var nodes = tableRow.getElementsByTagName("td");
+    selected_row_key = nodes[1].innerHTML;
+    document.getElementById("bootsname").value = nodes[0].innerHTML;
+    document.getElementById("registernr").value = nodes[1].innerHTML;
+    document.getElementById("segelzeichen").value = nodes[2].innerHTML;
+    document.getElementById("heimathafen").value = nodes[3].innerHTML;
+    document.getElementById("yachtclub").value = nodes[4].innerHTML;
+    document.getElementById("eigner").value = nodes[5].innerHTML;
+    document.getElementById("versicherung").value = nodes[6].innerHTML;
+    document.getElementById("rufzeichen").value = nodes[7].innerHTML;
+    document.getElementById("typ").value = nodes[8].innerHTML;
+    document.getElementById("konstrukteur").value = nodes[9].innerHTML;
+    document.getElementById("laenge").value = nodes[10].innerHTML;
+    document.getElementById("breite").value = nodes[11].innerHTML;
+    document.getElementById("tiefgang").value = nodes[12].innerHTML;
+    document.getElementById("masthoehe").value = nodes[13].innerHTML;
+    document.getElementById("verdraengung").value = nodes[14].innerHTML;
+    document.getElementById("rigArt").value = nodes[15].innerHTML;
+    document.getElementById("baujahr").value = nodes[16].innerHTML;
+    document.getElementById("motor").value = nodes[17].innerHTML;
+    document.getElementById("tankgroesse").value = nodes[18].innerHTML;
+    document.getElementById("wassertankgroesse").value = nodes[19].innerHTML;
+    document.getElementById("abwassertankgroesse").value = nodes[20].innerHTML;
+    document.getElementById("grosssegelgroesse").value = nodes[21].innerHTML;
+    document.getElementById("genuagroesse").value = nodes[22].innerHTML;
+    document.getElementById("spie").value = nodes[23].innerHTML;
 }
 
-function reset_form(){
-	$("#registernr').value="";
-	$("#bootsname').value="";
-	$("#segelzeichen').value="";
-	$("#heimathafen').value="";
-	$("#yachtclub').value="";
-	$("#eigner').value="";
-	$("#versicherung').value="";
-	$("#rufzeichen').value="";
-	$("#typ').value="";
-	$("#konstrukteur').value="";
-	$("#laenge').value="";
-	$("#breite').value="";
-	$("#tiefgang').value="";
-	$("#masthoehe').value="";
-	$("#verdraengung').value="";
-	$("#rigArt').value="";
-	$("#baujahr').value="";
-	$("#motor').value="";
-	$("#tankgroesse').value="";
-	$("#wassertankgroesse').value="";
-	$("#abwassertankgroesse').value="";
-	$("#grosssegelgroesse').value="";
-	$("#genuagroesse').value="";
-	$("#spie').value="";
+function reset_form() {
+    document.getElementById("registernr").value = "";
+    document.getElementById("bootsname").value = "";
+    document.getElementById("segelzeichen").value = "";
+    document.getElementById("heimathafen").value = "";
+    document.getElementById("yachtclub").value = "";
+    document.getElementById("eigner").value = "";
+    document.getElementById("versicherung").value = "";
+    document.getElementById("rufzeichen").value = "";
+    document.getElementById("typ").value = "";
+    document.getElementById("konstrukteur").value = "";
+    document.getElementById("laenge").value = "";
+    document.getElementById("breite").value = "";
+    document.getElementById("tiefgang").value = "";
+    document.getElementById("masthoehe").value = "";
+    document.getElementById("verdraengung").value = "";
+    document.getElementById("rigArt").value = "";
+    document.getElementById("baujahr").value = "";
+    document.getElementById("motor").value = "";
+    document.getElementById("tankgroesse").value = "";
+    document.getElementById("wassertankgroesse").value = "";
+    document.getElementById("abwassertankgroesse").value = "";
+    document.getElementById("grosssegelgroesse").value = "";
+    document.getElementById("genuagroesse").value = "";
+    document.getElementById("spie").value = "";
 }
 
-function edit_Node(regex, input, helpId, helpMessage){
-	if (!regex.test(input)) {
-		if (helpId != null)
+function edit_Node(regex, input, helpId) {
 
-			while (helpId.firstChild) 
-				helpId.removeChild(helpId.firstChild);
-			
-			helpId.appendChild(document.createTextNode(helpMessage)); 
-			return false;
-		}
+    if (regex.test(input) || input == "") {
+        helpId.style.backgroundColor = "#FFFFFF";
+        return true;
+    } else {
+        helpId.style.backgroundColor = "#FF0000";
+        return false;
+    }
 
-		else {          
-			if (helpId != null){
-				while (helpId.firstChild) 
-	
-					helpId.removeChild(helpId.firstChild);
-			}
-		return true;
-	}      
 }
 
-function regEx1(inputField, helpId) {			
-	return edit_Node(/[A-Za-z'\-\s]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
+function regEx1(inputField, helpId) {
+    return edit_Node(/^([A-Za-z'\-\s]{2,30})$/, inputField.value, helpId);
 }
 
-function regEx2(inputField, helpId) {			
-	return edit_Node(/[\w]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx3(inputField, helpId) {			
-	return edit_Node(/[\w]{1}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx4(inputField, helpId) {			
-	return edit_Node(/[A-Za-z\-\s]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx5(inputField, helpId) {			
-	return edit_Node(/[\w'\-\s]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx6(inputField, helpId) {			
-	return edit_Node(/[A-Za-z\-\s]{2,30}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx7(inputField, helpId) {			
-	return edit_Node(/[\d]{1,4}\.[\d]{2}/, inputField.value, helpId, "Ungültige Eingabe!");
-}
-function regEx8(inputField, helpId) {			
-	return edit_Node(/[\d]{1,4}/, inputField.value, helpId, "Ungültige Eingabe!");
+function regEx2(inputField, helpId) {
+    return edit_Node(/^([\w]{2,30})$/, inputField.value, helpId);
 }
 
-function regEx9(inputField, helpId) {			
-	return edit_Node(/[\d]{2,4}/, inputField.value, helpId, "Ungültige Eingabe!");
+function regEx3(inputField, helpId) {
+    return edit_Node(/^([\w]{1,5})$/, inputField.value, helpId);
 }
 
+function regEx4(inputField, helpId) {
+    return edit_Node(/^([A-Za-z\-\s]{2,30})$/, inputField.value, helpId);
+}
 
+function regEx5(inputField, helpId) {
+    return edit_Node(/^([\w'\-\s]{2,30})$/, inputField.value, helpId);
+}
 
-				
-	
+function regEx6(inputField, helpId) {
+    return edit_Node(/^([A-Za-z\-\s]{2,30})$/, inputField.value, helpId);
+}
+
+function regEx7(inputField, helpId) {
+    return edit_Node(/^([\d]{1,4}\.[\d]{2})$/, inputField.value, helpId);
+}
+
+function regEx8(inputField, helpId) {
+    return edit_Node(/^([\d]{1,4})$/, inputField.value, helpId);
+}
+
+function regEx9(inputField, helpId) {
+    return edit_Node(/^([\d]{2,4})$/, inputField.value, helpId);
+}
