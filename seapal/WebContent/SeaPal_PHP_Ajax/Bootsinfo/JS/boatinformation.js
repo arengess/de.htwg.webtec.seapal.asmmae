@@ -3,7 +3,16 @@ function update_div() {
     reset_form();
 }
 
+var oldTableRow;
 function set_values(tableRow) {
+    //Zeilen färben
+    if (oldTableRow) {
+        oldTableRow.style.backgroundColor = '';
+    }
+    oldTableRow = tableRow;
+    tableRow.style.backgroundColor = '#a9a9a9'
+    
+    //Content einfügen
     var nodes = tableRow.getElementsByTagName("td");
     selected_row_key = nodes[1].innerHTML;
     document.getElementById("bootsname").value = nodes[0].innerHTML;

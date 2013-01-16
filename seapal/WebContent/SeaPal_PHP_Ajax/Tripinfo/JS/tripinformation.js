@@ -1,3 +1,31 @@
+    $(function(){
+        $('#form').keyup(function (e){
+            if (e.keyCode==13){
+                var tank;
+                if($('#tankgefuellt').checked){
+                    tank = 1;
+                }else{
+                    tank = 0;
+                }
+                trip = new Array(
+                    document.getElementById('registernr').value,
+                    document.getElementById('triptitle').value,
+                    document.getElementById('von').value,
+                    document.getElementById('nach').value,
+                    document.getElementById('skipper').value,
+                    document.getElementById('crew').value,
+                    document.getElementById('start').value,
+                    document.getElementById('ende').value,
+                    document.getElementById('dauer').value,
+                    document.getElementById('motor').value,
+                    tank,
+                    document.getElementById('notes').value
+                );
+                trip_send(trip);
+            }
+        });
+    });
+
 function show_trip(title, von, nach, skipper, crew, start, ende, dauer, motor, tankgefuellt, notes, key) {
 
     if (tankgefuellt == 1) {

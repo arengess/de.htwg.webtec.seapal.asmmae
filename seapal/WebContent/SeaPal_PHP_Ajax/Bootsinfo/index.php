@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>BootInfo</title>
+		<script type="text/javascript" src="../jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="./JS/boatinformation.js"></script>
-		<script type="text/javascript" src="./JS/jquery-1.8.2.js"></script>
 		<script type="text/javascript" src="./JS/index.js"></script>
 	</head>
 	<body>

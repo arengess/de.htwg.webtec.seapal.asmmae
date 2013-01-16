@@ -10,7 +10,7 @@
 			<tfoot>
 			<tr>
 				<td><input type='button' onclick='delete_entry();' value='Loeschen'/></td>
-				<td><a style='text-decoration:none' href='../entryinformation_php_ajax/entryinformation.php?newval=".$_GET['val']."'><input type='button' value='Neuer Eintrag'/></a></td>
+				<td><a style='text-decoration:none' href='../Entryinfo/entryinformation.php?newval=".$_GET['val']."'><input type='button' value='Neuer Eintrag'/></a></td>
 			</tr>
 			</tfoot>
 			<tbody>";
@@ -22,7 +22,7 @@
 		echo "<td>COG ".$row['Cog']."</td>";
 		echo "<td>SOG ".$row['Sog']."</td>";
 		echo "<td style='display:none'>".$row['Triptitle']."</td>";
-		echo "<td><a style='text-decoration:none' href='../entryinformation_php_ajax/entryinformation.php?val=".$row['Name']."'>Entry</a></td>";
+		echo "<td><a style='text-decoration:none' href='../Entryinfo/entryinformation.php?val=".$row['Name']."'>Entry</a></td>";
 		echo "</tr>";
 	}
 	echo "</tbody></table>";

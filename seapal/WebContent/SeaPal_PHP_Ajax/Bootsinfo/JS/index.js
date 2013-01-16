@@ -68,7 +68,7 @@ function sendBoat(boat) {
         dataType : 'json',
         complete : function(data) {
             update_div();
-        }
+        },
     });
 }
 
