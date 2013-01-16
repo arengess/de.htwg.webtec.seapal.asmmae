@@ -1,7 +1,7 @@
 $(function() {
     $('#form').keyup(function(e) {
         if (e.keyCode === 13) {
-            
+
             boat = new Array(
                 document.getElementById('registernr').value, 
                 document.getElementById('bootsname').value, 
@@ -27,14 +27,14 @@ $(function() {
                 document.getElementById('grosssegelgroesse').value, 
                 document.getElementById('genuagroesse').value, 
                 document.getElementById('spie').value
-                );
+            );
             sendBoat(boat);
         }
     });
 });
 
 function sendBoat(boat) {
-   
+
     $.ajax({
         type : 'POST',
         url : 'process.php',
@@ -66,10 +66,8 @@ function sendBoat(boat) {
             'spie' : boat[23]
         },
         dataType : 'json',
-        success : function(data) {
-            alert(data['msg']); 
-            alert("success");
-            complete : update_div();
+        complete : function(data) {
+            update_div();
         }
     });
 }
@@ -84,7 +82,6 @@ function delete_entry() {
         },
         dataType : 'json',
         success : function(data) {
-            alert(data['msg']);
             update_div();
         }
     });
@@ -93,4 +90,4 @@ function delete_entry() {
 
 $(document).ready(function() {
     $('#dynamic_view').load('dynamic_view.php');
-}); 
+});
