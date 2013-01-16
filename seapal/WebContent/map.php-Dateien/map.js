@@ -4,7 +4,6 @@ var marker;
 var markNr = 0;
 var alleMarken = [];
 var tempMarken = [];
-var infowindow;
 var poly;
 var path = [];
 var tempPath = [];
@@ -48,7 +47,9 @@ function initialize() {
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
-    
+    $('#bReset').click(function(){
+        initialize();
+    })
 
     mapTypeIds = ["roadmap", "satellite", "OSM"];
 
@@ -128,9 +129,9 @@ function addRoute(event) {
     marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + path.getLength(),
-        draggable : true,
         map : map
     });
+    
     $('#entfernung').text(getEntfernung(path));
 }
 
@@ -147,7 +148,6 @@ function distancePath(event) {
     marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + tempPath.getLength(),
-        draggable : true,
         map : map
     });
     tempPolylines.push(tempPoly);
@@ -169,10 +169,13 @@ function setMarker(event) {
     new google.maps.Point(10, 38), //anchor
     new google.maps.Size(40, 40) //scaled Size
     );
-
+    var markInfo = new google.maps.InfoWindow({
+        content : "Position:<br>" + getFormattedPosition(event.latLng)
+    });
     marker = new google.maps.Marker({
         position : event.latLng,
         title : markNr.toString(),
+        animation : google.maps.Animation.DROP,
         draggable : true,
         icon : marker_icon
     });
@@ -182,11 +185,15 @@ function setMarker(event) {
     google.maps.event.addListener(marker, 'click', function() {
         showMarkerMenu();
         activeMarker = marker;
+        markInfo.open(map, marker);
+        window.setTimeout(function() {
+            markInfo.close();
+        }, '3000');
     });
-    
-    //draggable - Position aktualisieren
-    google.maps.event.addListener(marker, 'dragend', function(event){
-        alert(getFormattedPosition(event.latLng));
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+        markInfo.close();
+        markInfo.setContent("Position: <br>" + getFormattedPosition(event.latLng));
+
     });
 }
 
@@ -252,7 +259,7 @@ function showMarkerMenu() {
 
 function getEntfernung(event) {
     var entfernung = google.maps.geometry.spherical.computeLength(event);
-    return (Math.round(entfernung / 1000 * 10000) / 10000);
+    return (Math.round(entfernung / 1000 * 1000) / 1000);
 }
 
 function getFormattedPosition(position) {
