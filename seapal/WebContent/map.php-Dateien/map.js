@@ -144,11 +144,11 @@ function addRoute(event) {
         activeMarker = marker;
         infowindow.setContent(marker.title + "<br>Position: <br>" + getFormattedPosition(event.latlng) + "<br>Gesamtentfernung: " + getEntfernung(path) + "km");
         infowindow.open(map, marker);
-        setTimeout(function(){
+        setTimeout(function() {
             infowindow.close();
         }, 4000);
     });
-    google.maps.event.addListener(marker, 'dragend', function(event){
+    google.maps.event.addListener(marker, 'dragend', function(event) {
         activeMarker = marker;
         infowindow.close();
         infowindow.setContent(marker.title + "<br>Position: <br>" + getFormattedPosition(event.latlng) + "<br>Gesamtentfernung: " + getEntfernung(path) + "km");
@@ -236,7 +236,7 @@ function setMarker(event) {
     google.maps.event.addListener(marker, 'dragend', function(event) {
         markInfo.close();
         markInfo.setContent("Position: <br>" + getFormattedPosition(event.latLng));
-
+        markInfo.open(map, marker);
     });
 }
 

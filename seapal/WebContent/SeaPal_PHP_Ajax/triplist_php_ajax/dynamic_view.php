@@ -5,7 +5,7 @@
 	$select = "SELECT triptitle,von,nach,skipper,start,ende,boot FROM tripinformation WHERE boot='$_GET[val]'";
     $result = mysql_query($select) or die ("MySQL ERROR: " . mysql_error());
 	
-	echo "	<table class='table1' rules='groups' cellspacing='10' cellpadding='10' >
+	echo "	<table border='1' class='table1' rules='groups' cellspacing='10' cellpadding='10' >
 			<thead><tr><th>Title</th><th>Von</th><th>Nach</th><th>Skipper</th><th>Start</th><th>Ende</th><th>Zu dem Trip</th></tr></thead>
 			<tfoot>
 			<tr>

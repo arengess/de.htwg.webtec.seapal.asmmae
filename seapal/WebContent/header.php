@@ -8,7 +8,7 @@
 						<img src="./SeaPal_files/Icon-Small-50.png" alt="Icon-Small-50" width="50" height="50">
 						<span>SeaPal</span>
 					</li>
-					<li class="active">
+					<li>
 						<a href="index.php">Homepage</a>
 					</li>
 					<li>

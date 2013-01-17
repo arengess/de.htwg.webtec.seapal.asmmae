@@ -5,7 +5,7 @@ function Change_Background(tableRow){
 	for (var i = 0; i < document.getElementsByTagName("tr").length; i++) {
 		document.getElementsByTagName("tr")[i].style.backgroundColor = "white";
 	}
-tableRow.style.backgroundColor = "#00BFFF";
+tableRow.style.backgroundColor = "#a9a9a9";
 
 
 var werte = tableRow.getElementsByTagName("td");
