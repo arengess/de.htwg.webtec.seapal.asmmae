@@ -6,7 +6,9 @@ var alleMarken = [];
 var tempMarken = [];
 var poly;
 var path = [];
+var polyRoute = [];
 var tempPath = [];
+var markRoute = [];
 var tempPathMarker = [];
 var tempPolylines = [];
 var timeout;
@@ -47,10 +49,9 @@ function initialize() {
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
-    $('#bReset').click(function(){
+    $('#bReset').click(function() {
         initialize();
     })
-
     mapTypeIds = ["roadmap", "satellite", "OSM"];
 
     var crosshairShape = {
@@ -102,6 +103,7 @@ function initialize() {
         strokeWeight : 3
     };
     poly = new google.maps.Polyline(polyOptions);
+    poly.binder = new MVCArrayBinder(poly.getPath());
     poly.setMap(map);
 
     var tempPolyOptions = {
@@ -129,10 +131,51 @@ function addRoute(event) {
     marker = new google.maps.Marker({
         position : event.latLng,
         title : '#' + path.getLength(),
+        draggable : true,
         map : map
     });
-    
+
+    markRoute.push(marker);
+    polyRoute.push(poly);
+    marker.bindTo('position', poly.binder, (path.getLength() - 1).toString());
+
+    var infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(markRoute, 'click', function(event) {
+        activeMarker = marker;
+        infowindow.setContent(marker.title + "<br>Position: <br>" + getFormattedPosition(event.latlng) + "<br>Gesamtentfernung: " + getEntfernung(path) + "km");
+        infowindow.open(map, marker);
+        setTimeout(function(){
+            infowindow.close();
+        }, 4000);
+    });
+    google.maps.event.addListener(marker, 'dragend', function(event){
+        activeMarker = marker;
+        infowindow.close();
+        infowindow.setContent(marker.title + "<br>Position: <br>" + getFormattedPosition(event.latlng) + "<br>Gesamtentfernung: " + getEntfernung(path) + "km");
+    });
+
     $('#entfernung').text(getEntfernung(path));
+}
+
+function deleteRoute(event) {
+    event.unbindAll();
+    for (var i = 0; i < markRoute.length; i++) {
+        markRoute[i].setMap(null);
+    }
+    path = [];
+
+    for (var i = 0; i < polyRoute.length; i++) {
+        polyRoute[i].setMap(null);
+    }
+    polyRoute = [];
+    var polyOptions = {
+        strokeColor : "CC0000",
+        strokeOpacity : 1.0,
+        strokeWeight : 2,
+        map : map
+    };
+    poly = new google.maps.Polyline(polyOptions);
+    poly.binder = new MVCArrayBinder(poly.getPath());
 }
 
 function distancePath(event) {
@@ -256,6 +299,27 @@ function showMarkerMenu() {
         $("button").hide(200);
     }, 5000);
 }
+
+function MVCArrayBinder(mvcArray) {
+    this.array_ = mvcArray;
+}
+
+MVCArrayBinder.prototype = new google.maps.MVCObject();
+MVCArrayBinder.prototype.get = function(key) {
+    if (!isNaN(parseInt(key))) {
+        return this.array_.getAt(parseInt(key));
+    } else {
+        this.array_.get(key);
+    }
+};
+
+MVCArrayBinder.prototype.set = function(key, val) {
+    if (!isNaN(parseInt(key))) {
+        this.array_.setAt(parseInt(key), val);
+    } else {
+        this.array_.set(key, val);
+    }
+};
 
 function getEntfernung(event) {
     var entfernung = google.maps.geometry.spherical.computeLength(event);

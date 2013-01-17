@@ -4,6 +4,7 @@
 	<title>Trip Information</title>
 	<script type="text/javascript" src="./JS/tripinformation.js"></script>
 	<script type="text/javascript" src="../jquery-1.8.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="./JS/style.css">
 </head>
 <body>
 	<h1>Tripinformation</h1>

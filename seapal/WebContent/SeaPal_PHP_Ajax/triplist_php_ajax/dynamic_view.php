@@ -9,7 +9,7 @@
 			<thead><tr><th>Title</th><th>Von</th><th>Nach</th><th>Skipper</th><th>Start</th><th>Ende</th><th>Zu dem Trip</th></tr></thead>
 			<tfoot>
 			<tr>
-				<td><input type='button' onclick='delete_entry();' value='Trip Loeschen'/></td>
+				<td><input type='button' onclick='delete_entry();' value='Trip L&ouml;schen'/></td>
 				<td><a style='text-decoration:none' href='../Tripinfo/tripinformation.php?newval=$_GET[val]'><input type='button' value='Trip anlegen'/></a></td>
 			</tr>
 			</tfoot>

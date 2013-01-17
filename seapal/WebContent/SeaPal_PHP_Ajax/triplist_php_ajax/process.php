@@ -1,6 +1,6 @@
 <?php
-    $connection = include("../../connection.php");
-	$delete = "DELETE FROM tripinformation WHERE title = '$_POST[key]'";
+    $connection = include("../connection.php");
+	$delete = "DELETE FROM tripinformation WHERE triptitle = '$_POST[key]'";
 	$res = array();
 	if(!mysql_query($delete)){
 		$res['msg'] = "MySQL ERROR: " . mysql_error();		

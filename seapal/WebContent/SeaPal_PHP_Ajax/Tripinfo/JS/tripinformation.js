@@ -34,21 +34,21 @@ function show_trip(title, von, nach, skipper, crew, start, ende, dauer, motor, t
         $('#tankgefuellt').checked = false;
     }
 
-    $('#triptitle').value = title;
-    $('#von').value = von;
-    $('#nach').value = nach;
-    $('#skipper').value = skipper;
-    $('#crew').value = crew;
-    $('#start').value = start;
-    $('#ende').value = ende;
-    $('#dauer').value = dauer;
-    $('#motor').value = motor;
-    $('#notes').value = notes;
-    $('#registernr').value = key;
+    $('#triptitle').html = title;
+    $('#von').html = von;
+    $('#nach').html = nach;
+    $('#skipper').html = skipper;
+    $('#crew').html = crew;
+    $('#start').html = start;
+    $('#ende').html = ende;
+    $('#dauer').html = dauer;
+    $('#motor').html = motor;
+    $('#notes').html = notes;
+    $('#registernr').html = key;
 }
 
 function set_foreign_key(key) {
-    $('#registernr').value = key;
+    $('#registernr').html = key;
 }
 
 function Change_Background(tableRow) {
