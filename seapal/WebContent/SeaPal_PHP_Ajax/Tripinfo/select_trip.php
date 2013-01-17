@@ -1,7 +1,7 @@
 <?php
 $connection =
 include ("../connect.php");
-$select = "SELECT triptitle,von,nach,skipper,crew,start,ende,dauer,motor,boot FROM tripinformation WHERE triptitle ='$_GET[val]'";
+$select = "SELECT triptitle, von, nach, skipper, crew, start, ende, dauer, motor, boot FROM tripinformation WHERE triptitle ='$_GET[val]'";
 $result = mysql_query($select) or die("MySQL ERROR: " . mysql_error());
 $row = mysql_fetch_array($result);
 

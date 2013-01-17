@@ -1,0 +1,38 @@
+#divimage{
+	position: absolute;
+	float: left;
+	top: 283px;
+	left: 10px;
+	width: 200px;
+	height: 200px;
+
+}
+#divnotes{
+	position: absolute;
+	float: left;
+	top: 260px;
+	left: 270px;
+	width: 200px;
+	height: 200px;
+}
+#divscreen{
+	position: absolute;
+	float: left;
+	top: 283px;
+	left: 550px;
+	width: 350px; 
+	height: 250px;
+}
+#entry_table{
+	position: absolute;
+	float: left;
+	top: 560px;
+}
+.row{
+	 cursor: pointer;
+}
+
+table {
+	cellspacing: 10px; 
+	cellpadding: 10px;
+}
