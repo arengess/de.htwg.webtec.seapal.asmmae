@@ -8,7 +8,7 @@
 						<img src="./SeaPal_files/Icon-Small-50.png" alt="Icon-Small-50" width="50" height="50">
 						<span>SeaPal</span>
 					</li>
-					<li class="active">
+					<li>
 						<a href="index.php">Homepage</a>
 					</li>
 					<li>
@@ -18,7 +18,7 @@
 						<a href="map.php">Map</a>
 					</li>
 					<li>
-						<a href="./SeaPal_PHP_Ajax/Bootsinfo/index.php">Forms</a>
+						<a href="http://localhost:8080/SeapalJSP/BootInfo.html">Forms</a>
 					</li>
 					<li>
 						<a href="screenshots.php">Screenshots</a>
