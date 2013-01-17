@@ -49,6 +49,9 @@ function initialize() {
     $('#bLoeschen').click(function() {
         deleteMarker(activeMarker);
     });
+    $('#bRouteLoeschen').click(function() {
+        deleteRoute;
+    });
     $('#bReset').click(function() {
         initialize();
     })
@@ -140,10 +143,11 @@ function addRoute(event) {
     marker.bindTo('position', poly.binder, (path.getLength() - 1).toString());
 
     var infowindow = new google.maps.InfoWindow();
+    
     google.maps.event.addListener(markRoute, 'click', function(event) {
         activeMarker = marker;
         infowindow.setContent(marker.title + "<br>Position: <br>" + getFormattedPosition(event.latlng) + "<br>Gesamtentfernung: " + getEntfernung(path) + "km");
-        infowindow.open(map, marker);
+        infowindow.open(map, markRoute);
         setTimeout(function() {
             infowindow.close();
         }, 4000);
