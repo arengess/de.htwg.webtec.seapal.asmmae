@@ -18,6 +18,9 @@
 						<a href="map.php">Map</a>
 					</li>
 					<li>
+						<a href="./SeaPal_PHP_Ajax/Bootsinfo/index.php">Forms</a>
+					</li>
+					<li>
 						<a href="screenshots.php">Screenshots</a>
 					</li>
 					<li>

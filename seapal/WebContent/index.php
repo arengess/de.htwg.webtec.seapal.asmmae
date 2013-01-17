@@ -59,9 +59,6 @@
 									<p>
 										Morbi id urna ut massa vestibulum tempor. faucibus eget nibh. Pellentesque ultricies felis quis est auctor ut dictum sapien adipiscing. Quisque eget tempus nunc. Curabitur venenaSed et gravida diam. Proin adipiscing nisi ac libero fringilla tincidunt consequat sed amet lorem ipsum dolor.
 									</p>
-									<p>
-										<a href="#"><img src="images/img09.jpg" alt=""></a>
-									</p>
 								</section>
 							</div>
 							<div class="3u">
@@ -70,9 +67,7 @@
 									<p>
 										Mauris posuere eros vel metus laoreet auctor. In sodales tincidunt volutpat. Nunc pulvinar massa id risus porta hendrerit. Nunc nec nibh velit, sit amet consectetur neque dolor.
 									</p>
-									<p>
-										<a href="#"><img src="images/img09.jpg" alt=""></a>
-									</p>
+									
 								</section>
 							</div>
 							<div class="3u">
@@ -81,9 +76,7 @@
 									<p>
 										Mauris posuere eros vel metus laoreet auctor. In sodales tincidunt volutpat. Nunc pulvinar massa id risus porta hendrerit. Nunc nec nibh velit, sit amet consectetur neque dolor.
 									</p>
-									<p>
-										<a href="#"><img src="images/img10.jpg" alt=""></a>
-									</p>
+									
 								</section>
 							</div>
 							<div class="3u">
@@ -92,9 +85,7 @@
 									<p>
 										Mauris posuere eros vel metus laoreet auctor. In sodales tincidunt volutpat. Nunc pulvinar massa id risus porta hendrerit. Nunc nec nibh velit, sit amet consectetur neque dolor.
 									</p>
-									<p>
-										<a href="#"><img src="images/img11.jpg" alt=""></a>
-									</p>
+									
 								</section>
 							</div>
 						</div>

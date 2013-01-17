@@ -15,6 +15,8 @@
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
 		<link rel="stylesheet" href="css/style.css" />
+		<script src="css/5grid/jquery.js"></script>
+		<script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.openerWidth=52"></script>
 
 		<!-- Google Analytics code -->
 		<script async="" src="contact.php-Dateien/cbgapi.loaded_0"></script><script src="contact.php-Dateien/widgets.js" id="twitter-wjs"></script><script gapi_processed="true" src="contact.php-Dateien/plusone.js" async="" type="text/javascript"></script><script src="contact.php-Dateien/all.js" id="facebook-jssdk"></script><script src="contact.php-Dateien/ga.js" async="" type="text/javascript"></script>

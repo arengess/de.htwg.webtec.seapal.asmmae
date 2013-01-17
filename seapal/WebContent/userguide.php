@@ -54,7 +54,7 @@
 			<!-- 			<div class="divider"></div> -->
 			<div id="page-wrapper">
 				<div class="12u">
-					<div class="5grid-layout" id="onecolumn">
+					<div class="5grid-layout" id="twocolumn">
 						<div class="row">
 							<div class="7u">
 								<section>
@@ -215,9 +215,6 @@
 
 					</div>
 					<!-- end #sidebar -->
-					<div style="clear: both;">
-						&nbsp;
-					</div>
 				</div>
 				<!-- end #page -->
 			</div>
