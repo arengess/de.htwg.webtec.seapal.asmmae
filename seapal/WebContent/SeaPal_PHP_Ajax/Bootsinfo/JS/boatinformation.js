@@ -1,5 +1,5 @@
 function update_div() {
-    $('#dynamic_view').fadeOut('slow').load('dynamic_view.php').fadeIn('slow');
+    $('#dynamic_view').fadeOut('fast').load('dynamic_view.php').fadeIn('fast');
     reset_form();
 }
 

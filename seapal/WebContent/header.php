@@ -18,7 +18,7 @@
 						<a href="map.php">Map</a>
 					</li>
 					<li>
-						<a href="http://localhost:8080/SeapalJSP/BootInfo.html">Forms</a>
+						<a href="./SeaPal_PHP_Ajax/Bootsinfo/index.php">Forms</a>
 					</li>
 					<li>
 						<a href="screenshots.php">Screenshots</a>
